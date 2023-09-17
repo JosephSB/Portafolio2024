@@ -1,0 +1,121 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/normalize.css';
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Icons -->
+    <link rel="icon" type="image/x-icon" href="/images/logo.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/images/logo16x16.png"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/images/logo16x16.png"
+      sizes="32x32"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/images/logo180x180.png"
+      sizes="180x180"
+    />
+    <!-- OG -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.request.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/web-preview.png" />
+    <!-- TWITER -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@josephsb01" />
+    <meta property="twitter:creator" content="@josephsb01" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/images/web-preview.png" />
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100;300;400;500;600;700;800;900&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FONTAWESOME -->
+    <script
+      src="https://kit.fontawesome.com/2c69e8843a.js"
+      crossorigin="anonymous"></script>
+    <!-- Google Site -->
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+	<Header/>
+	<main class="app">
+		<slot />
+	</main>
+  </body>
+</html>
+<style is:global>
+  :root {
+    --primary-font: "M PLUS 1", sans-serif;
+    --secondary-font: "Press Start 2P", cursive;
+    --primary-color: #14f898;
+    --bd-color: #202023;
+	--bd-color-transparent: #2020238f;
+    --bd-color-2: #2b2b2f;
+    --text-color: #ffffff;
+    --text-color-2: #a3a3a3;
+	--max-width: 800px;
+	--size-header: 60px;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+	font-family: var(--primary-font);
+    background-color: var(--bd-color);
+  }
+  .app{
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+	max-width: var(--max-width);
+	padding: 1rem;
+	padding-top: calc(var(--size-header) + 10px);
+	margin: 0 auto;
+    min-height: 100vh;
+	position: relative;
+  }
+  a {
+    text-decoration: none;
+  }
+  /*------------SCROLL----------------*/
+  ::-webkit-scrollbar {
+    width: 0.3rem;
+    background-color: rgb(17, 17, 17);
+    border-radius: 0.5rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(80, 80, 80);
+    border-radius: 0.5rem;
+  }
+</style>

@@ -1,0 +1,246 @@
+[
+    {
+        "id": "project-001",
+        "portadas" : [
+            "p1/portada1.webp",
+            "p1/portada2.webp",
+            "p1/portada3.webp",
+            "p1/portada4.webp"
+        ],
+        "name":"MiniSpotiffy",
+        "tags" : ["API", "Backend","Frontend","Database"],
+        "description" : "Imagina una aplicación 🎵 similar a Spotify, pero con un toque personal. Con esta plataforma, tienes la capacidad de cargar y disfrutar de tu música favorita 🎶. Además, te ofrece la opción de iniciar y cerrar sesión a tu conveniencia 🔒, así como la posibilidad de crear tus propias listas de reproducción personalizadas 📜. Para su desarrollo, utilizamos PHP como una sólida API 🚀, y en la interfaz de usuario, aprovechamos React.js para brindarte una experiencia de primera clase 🌟.",
+        "Repositorio":"https://github.com/JosephSB/MINISPOTIFY-WITH-DOCKER",
+        "Demo": "",        
+        "technologies":[              
+            {
+                "name": "PHP",
+                "icon": "svg/php.svg"
+            },
+            {
+                "name": "MySQL",
+                "icon": "svg/mysql.svg"
+            },
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            },
+            {
+                "name": "Docker",
+                "icon": "svg/docker.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-002",
+        "portadas" : [
+            "p2/portada1.webp",
+            "p2/portada2.webp",
+            "p2/portada3.webp",
+            "p2/portada4.webp"
+        ],
+        "name":"App Marvel",
+        "tags" : ["MERN","Frontend", "Backend", "Database", "API"],
+        "description" : "magina una aplicación 🦸‍♂️ que utiliza la API de Marvel para listar y mostrar en detalle a tus personajes favoritos 🌟. Además, puedes iniciar sesión 🔒 y marcarlos como tus favoritos para un acceso rápido y sencillo.",
+        "Repositorio": "https://github.com/JosephSB/App-Marvel",
+        "Demo": "/",
+        "technologies":[ 
+            {
+                "name": "NodeJS",
+                "icon": "svg/nodejs.svg"
+            },             
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            },
+            {
+                "name": "Docker",
+                "icon": "svg/docker.svg"
+            },
+            {
+                "name": "MongoDB",
+                "icon": "svg/mongo.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-003",
+        "portadas" : [
+            "p3/portada1.webp",
+            "p3/portada2.webp",
+            "p3/portada3.webp",
+            "p3/portada4.webp"
+        ],
+        "name":"Farmacheck",
+        "tags" : ["Api","Frontend"],
+        "description" : "Imagina un proyecto 🏥 hecho con React.js en el que accedo a una API para obtener información sobre ubicaciones y precios de medicamentos 💊. En esta aplicación, puedes seleccionar tu ubicación 📍 y encontrar los medicamentos que necesitas al mejor precio 💰.",
+        "Repositorio": "https://github.com/JosephSB/Farmacheck",
+        "Demo": "",
+        "technologies":[              
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-004",
+        "portadas" : [
+            "p4/portada1.webp",
+            "p4/portada2.webp",
+            "p4/portada3.webp",
+            "p4/portada4.webp"
+        ],
+        "name":"Chat App",
+        "tags" : ["Websockets", "Backend","Frontend","Database"],
+        "description" : "Imagina una aplicación 📱 similar a WhatsApp, que cuenta con una API para buscar y agregar contactos 🧑‍🤝‍🧑, iniciar sesión 🔒, registrarte 📝 y mantener conversaciones con tus amigos 🗣️.",
+        "Repositorio":"https://github.com/JosephSB/CHAT-APP",
+        "Demo": "",
+        "technologies":[              
+            {
+                "name": "NodeJS",
+                "icon": "svg/nodejs.svg"
+            },
+            {
+                "name": "SocketIO",
+                "icon": "svg/socketio.svg"
+            },
+            {
+                "name": "Docker",
+                "icon": "svg/docker.svg"
+            },
+            {
+                "name": "MongoDB",
+                "icon": "svg/mongo.svg"
+            },
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-005",
+        "portadas" : [
+            "p5/portada1.webp",
+            "p5/portada2.webp",
+            "p5/portada3.webp",
+            "p5/portada4.webp"
+        ],
+        "name":"App Rick y Morty",
+        "tags" : ["Api","Frontend"],
+        "description" : "Un emocionante proyecto 🚀 desarrollado en React.js, en el que exploramos la API de la serie Rick y Morty 🪐 para traerte una experiencia única.",
+        "Repositorio": "https://github.com/JosephSB/RickandMorty",
+        "Demo": "https://rick-and-morty-pe.herokuapp.com/",
+        "technologies":[              
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-006",
+        "portadas" : [
+            "p6/portada1.webp",
+            "p6/portada2.webp",
+            "p6/portada3.webp",
+            "p6/portada4.webp"
+        ],
+        "name":"Simple Chat",
+        "tags" : ["Backend","Frontend","Websockets"],
+        "description" : "Un emocionante proyecto 💬 desarrollado en React.js en el frontend y Node.js en el backend, donde utilizamos socket.io para crear un chat sencillo 🚀.",
+        "Repositorio": "https://github.com/JosephSB/Chat-Simple",
+        "Demo": "https://tunkay-chat.herokuapp.com/",
+        "technologies":[ 
+            {
+                "name": "NodeJS",
+                "icon": "svg/nodejs.svg"
+            },             
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            },
+            {
+                "name": "SocketIO",
+                "icon": "svg/socketio.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-007",
+        "portadas" : [
+            "p7/portada1.webp",
+            "p7/portada2.webp",
+            "p7/portada3.webp",
+            "p7/portada4.webp"
+        ],
+        "name":"YourDrugs",
+        "tags" : ["Api","Frontend","Backend","e-commerce", "MERN"],
+        "description" : "Imagina un e-commerce 🛒 inspirado en la serie 'How to Sell Drugs Online'. Este proyecto te permite crear un carrito de compras simulado, validar usuarios 🧑🔐 y compartir tus comentarios en cada producto 📝.",
+        "Repositorio": "https://github.com/JosephSB/Frontend-YourDrugs",
+        "Demo": "",
+        "technologies":[              
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            },
+            {
+                "name": "NodeJS",
+                "icon": "svg/nodejs.svg"
+            },
+            {
+                "name": "MongoDB",
+                "icon": "svg/mongo.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-008",
+        "portadas" : [
+            "p8/portada1.webp",
+            "p8/portada2.webp",
+            "p8/portada3.webp",
+            "p8/portada4.webp"
+        ],
+        "name":"Pokedex",
+        "tags" : ["Api","Frontend"],
+        "description" : "Un emocionante proyecto 🐾 desarrollado en React.js, en el que exploramos la API de Pokémon 🌟. Además, diseñé un juego de adivinanza de Pokémon con 5 niveles de diversión 🎮. ¿Puedes atraparlos a todos? 😉🔥",
+        "Repositorio": "https://github.com/JosephSB/POKEDEX-GAME",
+        "Demo": "https://mypokedex-online.herokuapp.com/",
+        "technologies":[              
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-009",
+        "portadas" : [
+            "p9/portada1.webp",
+            "p9/portada2.webp",
+            "p9/portada3.webp",
+            "p9/portada4.webp"
+        ],
+        "name":"MagicCakes",
+        "tags" : ["Api","Frontend", "e-commerce"],
+        "description" : "Un delicioso proyecto 🍰 realizado en PHP para una tienda en línea de pasteles 🎂. Incluye una pasarela de pago a través de PayPal 💳 y un administrador para gestionar usuarios y productos 🧑‍💼🍰.",
+        "Repositorio": "https://github.com/JosephSB/MagicCakes",
+        "Demo": "",
+        "technologies":[              
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            },
+            {
+                "name": "PHP",
+                "icon": "svg/php.svg"
+            },
+            {
+                "name": "MySQL",
+                "icon": "svg/mysql.svg"
+            }
+        ]
+    }
+]

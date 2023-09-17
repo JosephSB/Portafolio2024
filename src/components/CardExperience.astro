@@ -1,0 +1,54 @@
+---
+interface Props {
+  date: string;
+  title: string;
+  body: string;
+  skills: string[];
+}
+
+const { date, skills, title, body } = Astro.props;
+---
+
+<div class="card-exp">
+  <p>{date}</p>
+  <div>
+    <p class="title">{title}</p>
+    <p>{body}</p>
+    <ul class="list-skills">
+        {skills.map( item => <li class="item-skill">{item}</li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .card-exp {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    color: var(--text-color-2);
+  }
+  .title {
+    color: var(--text-color);
+    font-weight: bold;
+  }
+  .list-skills {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .item-skill {
+    background-color: var(--bd-color-2);
+    font-size: 0.7rem;
+    color: var(--text-color);
+    width: auto;
+    padding: 0.5rem;
+    border-radius: 10px;
+  }
+  #text-body span{
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+</style>

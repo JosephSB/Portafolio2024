@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  image: string;
+  title: string;
+  subtitle: string;
+  skills: string[];
+}
+
+const { title, subtitle, skills, image } = Astro.props;
+---
+
+<div class="card-project">
+    <img 
+        src={`https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/projects/${image}`} 
+        alt={title} 
+        loading="lazy"
+    />
+    <div class="card-project-float">
+        <div class="content">
+            <p class="title">{title}</p>
+            <p class="subtitle">{subtitle.length > 80 ? subtitle.slice(0, 80)+"..." : subtitle}</p>
+            <ul class="list-skills">
+                {
+                    skills.map((item,index) => <li>{index !== 0 ? "• " : ""}{item}</li>)
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+
+</style>
