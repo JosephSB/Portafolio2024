@@ -4,12 +4,7 @@ import Layout from "../layouts/HtmlGeneralLayout.astro";
 import DataExperiences from "../data/experiences.json";
 import DataProjects from "../data/projects.json";
 import CardProject from "../components/CardProject.astro";
-import '../styles/GridGallery.css';
-
-const DataProjects3x3 = [];
-for (let i = 0; i < DataProjects.length; i += 3) {
-  DataProjects3x3.push(DataProjects.slice(i, i + 3));
-}
+import "../styles/GridGallery.css";
 ---
 
 <Layout
@@ -50,22 +45,22 @@ for (let i = 0; i < DataProjects.length; i += 3) {
   </div>
   <div class="home-projects">
     <p class="home-subtitle">Projects</p>
-    <div class="projects-list">
+    <div class="parent">
       {
-        DataProjects3x3.map((x) => (
-          <div class="gallery3x3">
-            {x.map((item) => (
-              <CardProject
-                title={item.name}
-                subtitle={item.description}
-                skills={item.technologies.map((x) => x.name)}
-                image={item.portadas[0]}
-              />
-            ))}
-          </div>
+        DataProjects.map((item, index) => (
+          <CardProject
+            className={`div${index + 1}`}
+            title={item.name}
+            subtitle={item.description}
+            skills={item.technologies.map((x) => x.name)}
+            image={item.portadas[0]}
+          />
         ))
       }
     </div>
+  </div>
+  <div class="home-skills">
+    <p class="home-subtitle">Skills</p>
   </div>
 </Layout>
 
@@ -93,7 +88,8 @@ for (let i = 0; i < DataProjects.length; i += 3) {
   }
   .home-about,
   .home-exp,
-  .home-projects {
+  .home-projects,
+  .home-skills {
     width: 100%;
     margin-bottom: 2rem;
   }

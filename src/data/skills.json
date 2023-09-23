@@ -1,0 +1,92 @@
+[
+    {
+        "id": "skill-001",
+        "name": "Frontend",
+        "skills": [
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            },
+            {
+                "name": "NextJS",
+                "icon": "svg/nextjs.svg"
+            },
+            {
+                "name": "Astro",
+                "icon": "svg/astro.svg"
+            },
+            {
+                "name": "Sass",
+                "icon": "svg/sass.svg"
+            }
+        ]
+    },
+    {
+        "id": "skill-002",
+        "name": "Backend",
+        "skills": [
+            {
+                "name": "NodeJS",
+                "icon": "svg/nodejs.svg"
+            },   
+            {
+                "name": "Express",
+                "icon": "svg/express.svg"
+            },
+            {
+                "name": "SocketIO",
+                "icon": "svg/socketio.svg"
+            },
+            {
+                "name": "PHP",
+                "icon": "svg/php.svg"
+            },
+            {
+                "name": "JAVA",
+                "icon": "svg/java.svg"
+            }
+        ]
+    },
+    {
+        "id": "skill-003",
+        "name": "Database",
+        "skills": [
+            {
+                "name": "MongoDB",
+                "icon": "svg/mongo.svg"
+            },
+            {
+                "name": "MySQL",
+                "icon": "svg/mysql.svg"
+            },
+            {
+                "name": "ElasticSearch",
+                "icon": "svg/elasticsearch.svg"
+            }
+        ]
+    },
+    {
+        "id": "skill-004",
+        "name": "Devops",
+        "skills": [
+            {
+                "name": "Docker",
+                "icon": "svg/docker.svg"
+            },
+            {
+                "name": "Linux",
+                "icon": "svg/linux.svg"
+            }
+        ]
+    },
+    {
+        "id": "skill-005",
+        "name": "Cloud",
+        "skills": [
+            {
+                "name": "GCloud",
+                "icon": "svg/gcloud.svg"
+            }
+        ]
+    }
+]
