@@ -28,7 +28,7 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
     />
   </div>
   <div class="home-about">
-    <p class="home-subtitle">About</p>
+    <p class="home-subtitle">Sobre Mi</p>
     <p class="about-text">
       ¡Hola! 😃 Mi nombre es Joseph Nahun Silva Bendezu, tengo 20 años y vivo en
       Lima, Perú 🇵🇪. Soy un apasionado de la tecnología y la informática 💻, por
@@ -45,11 +45,11 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
     </p>
   </div>
   <div class="home-exp">
-    <p class="home-subtitle">Experience</p>
+    <p class="home-subtitle">Experiencia</p>
     {DataExperiences.map((item) => <CardExperience {...item} />)}
   </div>
   <div class="home-projects">
-    <p class="home-subtitle">Projects</p>
+    <p class="home-subtitle">Proyectos</p>
     <div class="parent">
       {
         DataProjectsFilter.map((item, index) => (
@@ -64,11 +64,11 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
       }
     </div>
     <div class="home-project-link">
-      <a href="/projects">View Full Projects&nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+      <a href="/projects">Ver todos&nbsp;<i class="fa-solid fa-arrow-right"></i></a>
     </div>
   </div>
   <div class="home-skills">
-    <p class="home-subtitle">Skills</p>
+    <p class="home-subtitle">Tecnologias</p>
     <div class="container-skills">
       {
         DataSkills.map((item) => (
@@ -92,7 +92,7 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
     </div>
   </div>
   <div class="home-contact">
-    <p class="home-subtitle">Contact Me</p>
+    <p class="home-subtitle">Contactame</p>
     <div class="container-contact">
       <div class="item-contact">
         <p class="contact-subtitle">Telefono</p>
@@ -116,7 +116,7 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
           <a
             href={`${STORGE_BLOBS}cv-joseph-silva.pdf`}
             target="_blank"
-            >View Resume&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"
+            >Ver Resume&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"
             ></i></a>
         </p>
       </div>
@@ -212,6 +212,8 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
   .container-contact {
     width: 100%;
     color: var(--text-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
   .item-contact {
     display: grid;
