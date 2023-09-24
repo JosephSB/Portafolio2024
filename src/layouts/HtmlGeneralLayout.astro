@@ -1,7 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import SocialLinks from "../components/SocialLinks.astro"
+import SocialLinks from "../components/SocialLinks.astro";
 import "../styles/normalize.css";
 interface Props {
   title: string;
@@ -62,7 +62,8 @@ const { title, description } = Astro.props;
       src="https://kit.fontawesome.com/2c69e8843a.js"
       crossorigin="anonymous"></script>
     <!-- Google Site -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSF4MZ428S"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSF4MZ428S"
+    ></script>
     <script type="application/javascript">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -80,11 +81,11 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <Header />
-    <SocialLinks/>
+    <SocialLinks />
     <main class="app">
       <slot />
     </main>
-    <Footer/>
+    <Footer />
   </body>
 </html>
 <style is:global>
@@ -97,8 +98,28 @@ const { title, description } = Astro.props;
     --bd-color-2: #2b2b2f;
     --text-color: #ffffff;
     --text-color-2: #a3a3a3;
+    --filter-icon:  invert(1);
     --max-width: 800px;
     --size-header: 60px;
+  }
+  [data-theme="light"] {
+    --primary-color: #14f898;
+    --bd-color: #F5F5F5;
+    --bd-color-transparent: #f5f5f55a;
+    --bd-color-2: #FFFFFF;
+    --text-color: #202023;
+    --text-color-2: #29292c;
+    --filter-icon:  invert(0);
+  }
+
+  [data-theme="dark"] {
+    --primary-color: #14f898;
+    --bd-color: #202023;
+    --bd-color-transparent: #2020238f;
+    --bd-color-2: #2b2b2f;
+    --text-color: #ffffff;
+    --text-color-2: #a3a3a3;
+    --filter-icon:  invert(1);
   }
   * {
     box-sizing: border-box;
