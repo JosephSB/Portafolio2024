@@ -1,0 +1,47 @@
+---
+import HtmlGeneralLayout from "../../layouts/HtmlGeneralLayout.astro";
+import DataProjects from "../../data/projects.json";
+import CardProject from "../../components/CardProject.astro";
+import "../../styles/GridGallery.css";
+---
+
+<HtmlGeneralLayout
+  description="Projectos de desarrollo web en JavaScript, ReactJS, NextJS, NodeJS de Joseph Silva Bendezu."
+  title="My Projects | Joseph Silva Bendezu - Software Engineer, FullStack Developer"
+>
+  <div class="projects-header">
+    <p class="projects-subtitle">My Projects</p>
+    <div class="parent">
+      {
+        DataProjects.map((item, index) => (
+          <CardProject
+            id={item.id}
+            title={item.name}
+            className={`div${index + 1}`}
+            skills={item.technologies.map((x) => x.name)}
+            image={item.portadas[0]}
+          />
+        ))
+      }
+    </div>
+  </div>
+</HtmlGeneralLayout>
+
+<style>
+  .projects-header {
+    width: 100%;
+    margin-bottom: 2rem;
+    margin: 2rem 0;
+  }
+  .projects-subtitle {
+    margin: 5px 0;
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+  }
+  .container-gridcards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+</style>

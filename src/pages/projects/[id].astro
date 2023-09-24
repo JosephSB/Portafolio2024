@@ -1,0 +1,221 @@
+---
+import HtmlGeneralLayout from "../../layouts/HtmlGeneralLayout.astro";
+import DataProjects from "../../data/projects.json";
+import type { IProject } from "../../interfaces/Project.interfaces";
+
+export async function getStaticPaths() {
+  return DataProjects.map((item) => {
+    return {
+      params: { id: item.id },
+      props: {
+        ...item,
+      },
+    };
+  });
+}
+
+const {
+  id,
+  portadas,
+  name,
+  description,
+  tags,
+  technologies,
+  Demo,
+  Repositorio,
+} = Astro.props as IProject;
+---
+
+<HtmlGeneralLayout
+  description={description}
+  title={`Project ${name} | Joseph Silva Bendezu - Software Engineer, FullStack Developer`}
+>
+  <div class="container-detail">
+    <div id="gallery" class="gallery" data-imgs={JSON.stringify(portadas)}>
+      {
+        portadas.map((x, index) => (
+          <img
+            id="img-preview"
+            data-index={index}
+            class={"gallery-image" + " " + `img${index}`}
+            src={`https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/projects/${x}`}
+            alt={name}
+          />
+        ))
+      }
+    </div>
+    <ul class="detail-nav">
+      <li>JosephSB&nbsp;<i class="fa-solid fa-angle-right"></i></li>
+      <li>Projects&nbsp;<i class="fa-solid fa-angle-right"></i></li>
+      <li class="detail-nav-highlight">{name}</li>
+    </ul>
+    <p class="description">{description}</p>
+    <div class="tags">
+      <p>Tags</p>
+      <ul class="list-tags">{tags.map((x) => <li>{x}</li>)}</ul>
+    </div>
+    <div class="tags">
+      <p>Technologies</p>
+      <ul class="list-tags">
+        {
+          technologies.map((x) => (
+            <li>
+              <img
+                class="tag-icon"
+                src={`https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/${x.icon}`}
+                loading="lazy"
+              />
+              {x.name}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    {
+      Repositorio && (
+        <div class="tags">
+          <p>Repository</p>
+          <p>
+            <a class="tag-link" href={Repositorio} target="_blank">
+              View Github&nbsp;
+              <i class="fa-solid fa-arrow-up-right-from-square" />
+            </a>
+          </p>
+        </div>
+      )
+    }
+    {
+      Demo && (
+        <div class="tags">
+          <p>Demo</p>
+          <p>
+            <a class="tag-link" href={Demo} target="_blank">
+              View Demo&nbsp;
+              <i class="fa-solid fa-arrow-up-right-from-square" />
+            </a>
+          </p>
+        </div>
+      )
+    }
+  </div>
+</HtmlGeneralLayout>
+
+<script>
+  import ImageViewer from "awesome-image-viewer";
+
+  document.querySelectorAll("#img-preview").forEach((e) => {
+    e.addEventListener("click", (event: any) => {
+      const JSON_images = document.getElementById("gallery")?.dataset.imgs;
+      if (!JSON_images) return;
+      const images = JSON.parse(JSON_images);
+      if (!Array.isArray(images)) return;
+      console.log(event.target.dataset.index);
+      new ImageViewer({
+        images: images.map((x) => {
+          return {
+            mainUrl: `https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/projects/${x}`,
+          };
+        }),
+        isZoomable: true,
+        currentSelected: parseInt(event.target.dataset.index || 0),
+      });
+    });
+  });
+</script>
+
+<style>
+  .gallery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    min-height: 140px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .gallery-image:hover {
+    transform: scale(1.02);
+  }
+  .img1 {
+    grid-area: 1 / 1 / 3 / 3;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .img2 {
+    grid-area: 1 / 3 / 2 / 4;
+  }
+  .img3 {
+    grid-area: 1 / 4 / 2 / 5;
+    border-top-right-radius: 10px;
+  }
+  .img4 {
+    grid-area: 2 / 3 / 3 / 4;
+  }
+  .img5 {
+    grid-area: 2 / 4 / 3 / 5;
+    border-bottom-right-radius: 10px;
+  }
+  .detail-nav {
+    width: 100%;
+    padding: 0;
+    margin: 1rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    color: var(--text-color);
+  }
+  .detail-nav-highlight {
+    color: var(--primary-color);
+    font-family: var(--secondary-font);
+  }
+  .description {
+    color: var(--text-color-2);
+  }
+  .tags {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    color: var(--text-color-2);
+  }
+  .list-tags {
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+  }
+  .tag-icon {
+    width: 18px;
+    height: 18px;
+    filter: invert(1);
+  }
+  .list-tags li {
+    height: max-content;
+    font-size: 10px;
+    color: var(--text-color);
+    background-color: var(--bd-color-2);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .tag-link {
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .tag-link i {
+    font-size: x-small;
+  }
+</style>

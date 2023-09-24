@@ -6,6 +6,9 @@ import DataProjects from "../data/projects.json";
 import DataSkills from "../data/skills.json";
 import CardProject from "../components/CardProject.astro";
 import "../styles/GridGallery.css";
+
+const DataProjectsFilter = DataProjects.filter( x => x.isTop)
+
 ---
 
 <Layout
@@ -48,16 +51,19 @@ import "../styles/GridGallery.css";
     <p class="home-subtitle">Projects</p>
     <div class="parent">
       {
-        DataProjects.map((item, index) => (
+        DataProjectsFilter.map((item, index) => (
           <CardProject
+            id={item.id}
             className={`div${index + 1}`}
             title={item.name}
-            subtitle={item.description}
             skills={item.technologies.map((x) => x.name)}
             image={item.portadas[0]}
           />
         ))
       }
+    </div>
+    <div class="home-project-link">
+      <a href="/projects">View Full Projects&nbsp;<i class="fa-solid fa-arrow-right"></i></a>
     </div>
   </div>
   <div class="home-skills">
@@ -89,15 +95,29 @@ import "../styles/GridGallery.css";
     <div class="container-contact">
       <div class="item-contact">
         <p class="contact-subtitle">Telefono</p>
-        <p class="contact-title"><a href="tel:+51963032870">+51 963 032 870&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+        <p class="contact-title">
+          <a href="tel:+51963032870"
+            >+51 963 032 870&nbsp;<i
+              class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </p>
       </div>
       <div class="item-contact">
         <p class="contact-subtitle">Email</p>
-        <p class="contact-title"><a href="mailto:josephsb353@correo.com">josephsb353@gmail.com&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+        <p class="contact-title">
+          <a href="mailto:josephsb353@correo.com"
+            >josephsb353@gmail.com&nbsp;<i
+              class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </p>
       </div>
       <div class="item-contact">
         <p class="contact-subtitle">Resume</p>
-        <p class="contact-title"><a href="/pdf/cv-joseph-silva.pdf" target="_blank">View Resume&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+        <p class="contact-title">
+          <a
+            href="https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/cv-joseph-silva.pdf"
+            target="_blank"
+            >View Resume&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"
+            ></i></a>
+        </p>
       </div>
     </div>
   </div>
@@ -135,6 +155,16 @@ import "../styles/GridGallery.css";
   .home-subtitle {
     margin: 5px 0;
     font-family: var(--secondary-font);
+    color: var(--text-color);
+  }
+  .home-project-link{
+    width: 100%;
+    text-align: center;
+  }
+  .home-project-link a {
+    color: var(--text-color-2);
+  }
+  .home-project-link a:hover {
     color: var(--text-color);
   }
   .about-text {
@@ -178,15 +208,17 @@ import "../styles/GridGallery.css";
     height: 18px;
     filter: invert(1);
   }
-  .container-contact{
+  .container-contact {
     width: 100%;
     color: var(--text-color);
   }
-  .item-contact{
+  .item-contact {
     display: grid;
     grid-template-columns: 100px 1fr;
+    align-items: center;
+    justify-content: center;
   }
-  .contact-subtitle{
+  .contact-subtitle {
     color: var(--text-color-2);
   }
   .item-contact a {
@@ -195,7 +227,7 @@ import "../styles/GridGallery.css";
   .item-contact i {
     font-size: xx-small;
   }
-  .contact-title{
+  .contact-title {
     cursor: pointer;
     font-size: 14px;
   }
