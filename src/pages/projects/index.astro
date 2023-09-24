@@ -10,7 +10,10 @@ import "../../styles/GridGallery.css";
   title="My Projects | Joseph Silva Bendezu - Software Engineer, FullStack Developer"
 >
   <div class="projects-header">
-    <p class="projects-subtitle">My Projects</p>
+    <ul class="detail-nav">
+      <li>JosephSB&nbsp;<i class="fa-solid fa-angle-right"></i></li>
+      <li class="detail-nav-highlight">My Projects</li>
+    </ul>
     <div class="parent">
       {
         DataProjects.map((item, index) => (
@@ -30,8 +33,6 @@ import "../../styles/GridGallery.css";
 <style>
   .projects-header {
     width: 100%;
-    margin-bottom: 2rem;
-    margin: 2rem 0;
   }
   .projects-subtitle {
     margin: 5px 0;
@@ -43,5 +44,20 @@ import "../../styles/GridGallery.css";
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+  .detail-nav {
+    width: 100%;
+    padding: 0;
+    margin: 1rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    color: var(--text-color);
+  }
+  .detail-nav-highlight {
+    color: var(--primary-color);
+    font-family: var(--secondary-font);
   }
 </style>
