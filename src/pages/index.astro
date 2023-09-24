@@ -3,6 +3,7 @@ import CardExperience from "../components/CardExperience.astro";
 import Layout from "../layouts/HtmlGeneralLayout.astro";
 import DataExperiences from "../data/experiences.json";
 import DataProjects from "../data/projects.json";
+import DataSkills from "../data/skills.json";
 import CardProject from "../components/CardProject.astro";
 import "../styles/GridGallery.css";
 ---
@@ -61,6 +62,44 @@ import "../styles/GridGallery.css";
   </div>
   <div class="home-skills">
     <p class="home-subtitle">Skills</p>
+    <div class="container-skills">
+      {
+        DataSkills.map((item) => (
+          <div class="skill-item">
+            <p>{item.name}</p>
+            <ul>
+              {item.skills.map((x) => (
+                <li>
+                  <img
+                    class="skill-icon"
+                    src={`https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/${x.icon}`}
+                    loading="lazy"
+                  />
+                  {x.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="home-contact">
+    <p class="home-subtitle">Contact Me</p>
+    <div class="container-contact">
+      <div class="item-contact">
+        <p class="contact-subtitle">Telefono</p>
+        <p class="contact-title"><a href="tel:+51963032870">+51 963 032 870&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+      </div>
+      <div class="item-contact">
+        <p class="contact-subtitle">Email</p>
+        <p class="contact-title"><a href="mailto:josephsb353@correo.com">josephsb353@gmail.com&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+      </div>
+      <div class="item-contact">
+        <p class="contact-subtitle">Resume</p>
+        <p class="contact-title"><a href="/pdf/cv-joseph-silva.pdf" target="_blank">View Resume&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+      </div>
+    </div>
   </div>
 </Layout>
 
@@ -100,5 +139,64 @@ import "../styles/GridGallery.css";
   }
   .about-text {
     color: var(--text-color-2);
+  }
+  .container-skills {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .skill-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    color: var(--text-color);
+  }
+  .skill-item p {
+    color: var(--text-color-2);
+  }
+  .skill-item ul {
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .skill-item li {
+    height: max-content;
+    font-size: 10px;
+    background-color: var(--bd-color-2);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .skill-icon {
+    width: 18px;
+    height: 18px;
+    filter: invert(1);
+  }
+  .container-contact{
+    width: 100%;
+    color: var(--text-color);
+  }
+  .item-contact{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+  }
+  .contact-subtitle{
+    color: var(--text-color-2);
+  }
+  .item-contact a {
+    color: var(--text-color);
+  }
+  .item-contact i {
+    font-size: xx-small;
+  }
+  .contact-title{
+    cursor: pointer;
+    font-size: 14px;
   }
 </style>

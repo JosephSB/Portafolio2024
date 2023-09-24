@@ -26,6 +26,10 @@
         "name": "Backend",
         "skills": [
             {
+                "name": "TypeScript",
+                "icon": "svg/typescript.svg"
+            },
+            {
                 "name": "NodeJS",
                 "icon": "svg/nodejs.svg"
             },   
@@ -42,7 +46,7 @@
                 "icon": "svg/php.svg"
             },
             {
-                "name": "JAVA",
+                "name": "Java",
                 "icon": "svg/java.svg"
             }
         ]
