@@ -1,6 +1,7 @@
 ---
 import HtmlGeneralLayout from "../../layouts/HtmlGeneralLayout.astro";
 import DataProjects from "../../data/projects.json";
+import { STORGE_BLOBS } from "../../config";
 import type { IProject } from "../../interfaces/Project.interfaces";
 
 export async function getStaticPaths() {
@@ -37,8 +38,8 @@ const {
           <img
             id="img-preview"
             data-index={index}
-            class={"gallery-image" + " " + `img${index+1}`}
-            src={`https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/projects/${x}`}
+            class={"gallery-image" + " " + `img${index + 1}`}
+            src={`${STORGE_BLOBS}projects/${x}`}
             alt={name}
           />
         ))
@@ -62,7 +63,7 @@ const {
             <li>
               <img
                 class="tag-icon"
-                src={`https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/${x.icon}`}
+                src={`${STORGE_BLOBS}${x.icon}`}
                 loading="lazy"
               />
               {x.name}
@@ -102,6 +103,7 @@ const {
 
 <script>
   import ImageViewer from "awesome-image-viewer";
+  import { STORGE_BLOBS } from "../../config";
 
   document.querySelectorAll("#img-preview").forEach((e) => {
     e.addEventListener("click", (event: any) => {
@@ -109,11 +111,11 @@ const {
       if (!JSON_images) return;
       const images = JSON.parse(JSON_images);
       if (!Array.isArray(images)) return;
-      console.log(event.target.dataset.index);
+
       new ImageViewer({
         images: images.map((x) => {
           return {
-            mainUrl: `https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/projects/${x}`,
+            mainUrl: `${STORGE_BLOBS}projects/${x}`,
           };
         }),
         isZoomable: true,

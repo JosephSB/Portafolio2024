@@ -1,0 +1,1 @@
+export const STORGE_BLOBS = "https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/"

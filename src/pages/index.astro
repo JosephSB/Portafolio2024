@@ -6,6 +6,7 @@ import DataProjects from "../data/projects.json";
 import DataSkills from "../data/skills.json";
 import CardProject from "../components/CardProject.astro";
 import "../styles/GridGallery.css";
+import { STORGE_BLOBS } from "../config";
 
 const DataProjectsFilter = DataProjects.filter( x => x.isTop)
 
@@ -78,7 +79,7 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
                 <li>
                   <img
                     class="skill-icon"
-                    src={`https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/${x.icon}`}
+                    src={`${STORGE_BLOBS}${x.icon}`}
                     loading="lazy"
                   />
                   {x.name}
@@ -113,7 +114,7 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
         <p class="contact-subtitle">Resume</p>
         <p class="contact-title">
           <a
-            href="https://dlqtlyyjlhuqbdkjhcft.supabase.co/storage/v1/object/public/images/cv-joseph-silva.pdf"
+            href={`${STORGE_BLOBS}cv-joseph-silva.pdf`}
             target="_blank"
             >View Resume&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"
             ></i></a>
