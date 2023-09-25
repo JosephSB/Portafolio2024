@@ -35,6 +35,15 @@
 .div9 {
   grid-area: 11 / 4 / 13 / 6;
 }
+.div10 {
+  grid-area: 13 / 3 / 17 / 6;
+}
+.div11 {
+  grid-area: 13 / 1 / 15 / 3;
+}
+.div12 {
+  grid-area: 15 / 1 / 17 / 3;
+}
 
 .projects-list {
   width: 100%;

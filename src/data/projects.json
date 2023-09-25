@@ -3,6 +3,7 @@
         "id": "project-001",
         "isTop": true,
         "portadas" : [
+            "p1/preview.gif",
             "p1/portada1.webp",
             "p1/portada2.webp",
             "p1/portada3.webp",
@@ -36,6 +37,7 @@
         "id":"project-002",
         "isTop": false,
         "portadas" : [
+            "p2/preview.gif",
             "p2/portada1.webp",
             "p2/portada2.webp",
             "p2/portada3.webp",
@@ -90,6 +92,7 @@
         "id":"project-004",
         "isTop": true,
         "portadas" : [
+            "p4/preview.gif",
             "p4/portada1.webp",
             "p4/portada2.webp",
             "p4/portada3.webp",
@@ -227,6 +230,7 @@
         "id":"project-009",
         "isTop": false,
         "portadas" : [
+            "p9/preview.gif",
             "p9/portada1.webp",
             "p9/portada2.webp",
             "p9/portada3.webp",
@@ -249,6 +253,50 @@
             {
                 "name": "MySQL",
                 "icon": "svg/mysql.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-010",
+        "isTop": false,
+        "portadas" : [
+            "p10/preview.gif",
+            "p10/portada1.webp",
+            "p10/portada2.webp",
+            "p10/portada3.webp",
+            "p10/portada4.webp"
+        ],
+        "name":"MusicApp",
+        "tags" : ["Api","Frontend"],
+        "description" : "Un emocionante proyecto 🎵 desarrollado en React.js que utiliza la API de Deezer para buscar y disfrutar de tus canciones favoritas 🎶. Incluye un reproductor de música y un buscador, además de ser totalmente adaptable y fácil de usar 📱💿.",
+        "Repositorio": "https://github.com/JosephSB/Reto-Fractal",
+        "Demo": null,
+        "technologies":[              
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            }
+        ]
+    },
+    {
+        "id":"project-011",
+        "isTop": false,
+        "portadas" : [
+            "p11/preview.gif",
+            "p11/portada1.webp",
+            "p11/portada1.webp",
+            "p11/portada1.webp",
+            "p11/portada4.webp"
+        ],
+        "name":"Zombie Hunter",
+        "tags" : ["Desktop","Game"],
+        "description" : "Un emocionante proyecto 💥 desarrollado en Java, donde empleamos hilos y JFrame para dar vida a un juego de zombies 🧟‍♂️. Enfrenta dos niveles de desafío y prepárate para un enfrentamiento épico con un jefe final 🎮🧟‍♂️.",
+        "Repositorio": "https://github.com/JosephSB/Game-Java",
+        "Demo": null,
+        "technologies":[              
+            {
+                "name": "Java",
+                "icon": "svg/java.svg"
             }
         ]
     }
