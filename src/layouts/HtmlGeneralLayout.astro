@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SocialLinks from "../components/SocialLinks.astro";
 import "../styles/normalize.css";
+import { STORGE_BLOBS } from "../config";
 interface Props {
   title: string;
   description: string;
@@ -42,14 +43,14 @@ const { title, description } = Astro.props;
     <meta property="og:url" content={Astro.request.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/web-preview.png" />
+    <meta property="og:image" content={`${STORGE_BLOBS}web-preview.png`} />
     <!-- TWITER -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:site" content="@josephsb01" />
     <meta property="twitter:creator" content="@josephsb01" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="/images/web-preview.png" />
+    <meta property="twitter:image" content={`${STORGE_BLOBS}web-preview.png`} />
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
