@@ -27,11 +27,13 @@
       align-items: center;
       gap: 1rem;
       position: fixed;
+      z-index: 9;
     }
     .menu-socialLinks{
       padding: 0;
       list-style: none;
-      background-color: var(--bd-color-2);
+      background-color: var(--bd-color-transparent);
+      backdrop-filter: blur(10px);
       padding: 1rem;
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
@@ -39,5 +41,22 @@
     .link-socialLinks{
       color: var(--text-color);
     }
-
+    @media screen and (max-width: 600px) {
+      .container-socialLinks{
+        height: auto;
+        width: 100vw;
+        bottom: 0;
+        left: 0;
+      }
+      .menu-socialLinks{
+        width: 100%;
+        max-width: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin: 0;
+        padding: 0.5rem 2rem;
+      }
+    }
 </style>

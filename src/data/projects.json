@@ -45,7 +45,7 @@
         ],
         "name":"App Marvel",
         "tags" : ["MERN","Frontend", "Backend", "Database", "API"],
-        "description" : "magina una aplicación 🦸‍♂️ que utiliza la API de Marvel para listar y mostrar en detalle a tus personajes favoritos 🌟. Además, puedes iniciar sesión 🔒 y marcarlos como tus favoritos para un acceso rápido y sencillo.",
+        "description" : "Imagina una aplicación 🦸‍♂️ que utiliza la API de Marvel para listar y mostrar en detalle a tus personajes favoritos 🌟. Además, puedes iniciar sesión 🔒 y marcarlos como tus favoritos para un acceso rápido y sencillo.",
         "Repositorio": "https://github.com/JosephSB/App-Marvel",
         "Demo": null,
         "technologies":[ 

@@ -8,8 +8,7 @@ import CardProject from "../components/CardProject.astro";
 import "../styles/GridGallery.css";
 import { STORGE_BLOBS } from "../config";
 
-const DataProjectsFilter = DataProjects.filter( x => x.isTop)
-
+const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
 ---
 
 <Layout
@@ -64,7 +63,9 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
       }
     </div>
     <div class="home-project-link">
-      <a href="/projects">Ver todos&nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+      <a href="/projects"
+        >Ver todos&nbsp;<i class="fa-solid fa-arrow-right"></i></a
+      >
     </div>
   </div>
   <div class="home-skills">
@@ -99,7 +100,8 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
         <p class="contact-title">
           <a href="tel:+51963032870"
             >+51 963 032 870&nbsp;<i
-              class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              class="fa-solid fa-arrow-up-right-from-square"></i></a
+          >
         </p>
       </div>
       <div class="item-contact">
@@ -107,17 +109,17 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
         <p class="contact-title">
           <a href="mailto:josephsb353@correo.com"
             >josephsb353@gmail.com&nbsp;<i
-              class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              class="fa-solid fa-arrow-up-right-from-square"></i></a
+          >
         </p>
       </div>
       <div class="item-contact">
         <p class="contact-subtitle">Resume</p>
         <p class="contact-title">
-          <a
-            href={`${STORGE_BLOBS}cv-joseph-silva.pdf`}
-            target="_blank"
+          <a href={`${STORGE_BLOBS}cv-joseph-silva.pdf`} target="_blank"
             >Ver Resume&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"
-            ></i></a>
+            ></i></a
+          >
         </p>
       </div>
     </div>
@@ -158,7 +160,7 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
     font-family: var(--secondary-font);
     color: var(--text-color);
   }
-  .home-project-link{
+  .home-project-link {
     width: 100%;
     text-align: center;
   }
@@ -233,5 +235,26 @@ const DataProjectsFilter = DataProjects.filter( x => x.isTop)
   .contact-title {
     cursor: pointer;
     font-size: 14px;
+  }
+
+  /*---------RESPONSIVE---------*/
+  @media screen and (max-width: 600px) {
+    .home-banner {
+      /*width: 100%;
+      height: 400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 3rem;*/
+      height: auto;
+      flex-direction: column;
+      flex-flow: column-reverse;
+      margin: 2rem 0;
+    }
+    .container-skills, .container-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
   }
 </style>

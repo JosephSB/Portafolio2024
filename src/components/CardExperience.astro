@@ -10,7 +10,7 @@ const { date, skills, title, body } = Astro.props;
 ---
 
 <div class="card-exp">
-  <p>{date}</p>
+  <p class="titleDate">{date}</p>
   <div>
     <p class="title">{title}</p>
     <p>{body}</p>
@@ -50,5 +50,18 @@ const { date, skills, title, body } = Astro.props;
     font-size: 0.9rem;
     color: var(--primary-color);
     cursor: pointer;
+  }
+
+  /*---------RESPONSIVE---------*/
+  @media screen and (max-width: 600px) {
+    .card-exp {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .titleDate{
+      margin-bottom: 0;
+      margin-top: 2rem;
+    }
   }
 </style>

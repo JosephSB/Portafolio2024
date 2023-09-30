@@ -52,11 +52,11 @@ const {
     </ul>
     <p class="description">{description}</p>
     <div class="tags">
-      <p>Tags</p>
+      <p class="tag-title">Tags</p>
       <ul class="list-tags">{tags.map((x) => <li>{x}</li>)}</ul>
     </div>
     <div class="tags">
-      <p>Tecnologias</p>
+      <p class="tag-title">Tecnologias</p>
       <ul class="list-tags">
         {
           technologies.map((x) => (
@@ -76,7 +76,7 @@ const {
       Repositorio && (
         <div class="tags">
           <p>Repositorio</p>
-          <p>
+          <p class="tag-cotnainer-link">
             <a class="tag-link" href={Repositorio} target="_blank">
               Ver Github&nbsp;
               <i class="fa-solid fa-arrow-up-right-from-square" />
@@ -89,7 +89,7 @@ const {
       Demo && (
         <div class="tags">
           <p>Demo</p>
-          <p>
+          <p class="tag-cotnainer-link">
             <a class="tag-link" href={Demo} target="_blank">
               Ver Demo&nbsp;
               <i class="fa-solid fa-arrow-up-right-from-square" />
@@ -192,6 +192,7 @@ const {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
     list-style: none;
   }
@@ -219,5 +220,25 @@ const {
   }
   .tag-link i {
     font-size: x-small;
+  }
+  @media screen and (max-width: 600px){
+    .detail-nav{
+      font-size: 0.8rem;
+    }
+    .tags {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .tags .tag-title{
+      margin: 2rem 0;
+      margin-bottom: 1rem;
+    }
+    .tag-cotnainer-link{
+      margin: 0;
+    }
+    .list-tags{
+      margin: 0;
+    }
   }
 </style>
