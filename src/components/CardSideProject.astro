@@ -1,0 +1,122 @@
+---
+import { STORGE_BLOBS } from "../config";
+interface Props {
+  id: string;
+  image: string;
+  title: string;
+  subtitle?: string;
+  skills: string[];
+  className?: string;
+  demo: string
+  Repositorio: string
+}
+
+const { id, title, subtitle, skills, image, className = "", demo, Repositorio } = Astro.props;
+---
+
+<a class={"card-project" + " " + className} href={demo} target="_blank">
+  <div class="container">
+    <img src={`${STORGE_BLOBS}sideprojects/${image}`} alt={title} loading="lazy" />
+    <div class="card-project-float">
+      <div class="content">
+        <p class="title">{title}</p>
+        {
+          subtitle && (
+            <p class="subtitle">
+              {subtitle.length > 100
+                ? subtitle.slice(0, 100) + "..."
+                : subtitle}
+            </p>
+          )
+        }
+        <ul class="list-skills">
+          {
+            skills.map((item, index) => (
+              <li>
+                {index !== 0 ? "• " : ""}
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</a>
+
+<style>
+  .card-project {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+    max-height: 400px; /* remove later */
+  }
+
+  .card-project .container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-project img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  .card-project-float {
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    opacity: 0;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.1) 10%,
+      rgba(0, 0, 0, 0.78) 80%
+    );
+    transition: opacity 300ms ease-in-out 0s;
+  }
+
+  .card-project:hover .card-project-float {
+    opacity: 1;
+  }
+
+  .card-project .content {
+    transform: none;
+    transition: transform 300ms ease-in-out 0s;
+  }
+
+  .card-project:hover .content {
+    transform: translateY(-10%);
+  }
+
+  .card-project .title {
+    font-weight: bold;
+    color: white;
+    margin: 0;
+  }
+
+  .card-project .subtitle {
+    color: white;
+    margin: 0;
+  }
+
+  .card-project .list-skills {
+    padding: 0;
+    color: white;
+    display: flex;
+    gap: 5px;
+    list-style: none;
+    margin: 0;
+    font-size: 0.7rem;
+  }
+</style>

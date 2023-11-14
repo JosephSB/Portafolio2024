@@ -3,8 +3,10 @@ import CardExperience from "../components/CardExperience.astro";
 import Layout from "../layouts/HtmlGeneralLayout.astro";
 import DataExperiences from "../data/experiences.json";
 import DataProjects from "../data/projects.json";
+import DataSideProjects from "../data/sideprojects.json";
 import DataSkills from "../data/skills.json";
 import CardProject from "../components/CardProject.astro";
+import CardSideProject from "../components/CardSideProject.astro";
 import "../styles/GridGallery.css";
 import { STORGE_BLOBS } from "../config";
 
@@ -46,6 +48,24 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
   <div class="home-exp">
     <p class="home-subtitle">Experiencia</p>
     {DataExperiences.map((item) => <CardExperience {...item} />)}
+  </div>
+  <div class="home-exp">
+    <p class="home-subtitle">Side Projects</p>
+    <div class="home-sideprojects-content">
+      {
+        DataSideProjects.map((item, index) => (
+          <CardSideProject
+            id={item.id}
+            className={`div${index + 1}`}
+            title={item.name}
+            skills={item.technologies.map((x) => x.name)}
+            image={item.portadas[0]}
+            Repositorio={item.Repositorio}
+            demo={item.Demo}
+          />
+        ))
+      }
+    </div>
   </div>
   <div class="home-projects">
     <p class="home-subtitle">Proyectos</p>
@@ -155,6 +175,13 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
     width: 100%;
     margin-bottom: 2rem;
   }
+  .home-sideprojects-content{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,300px));
+    margin: 1rem 0;
+    margin-bottom: 2rem;
+  }
   .home-subtitle {
     margin: 5px 0;
     font-family: var(--secondary-font);
@@ -251,7 +278,8 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
       flex-flow: column-reverse;
       margin: 2rem 0;
     }
-    .container-skills, .container-contact {
+    .container-skills,
+    .container-contact {
       display: flex;
       flex-direction: column;
       gap: 0;

@@ -1,0 +1,21 @@
+[
+    {
+        "id": "sidep-001",
+        "isTop": true,
+        "portadas" : [
+            "p1/portada1.webp",
+            "p1/preview.gif"
+        ],
+        "name":"React Twitter Poll",
+        "tags" : ["Frontend","NPM"],
+        "description" : "React-Twitter-Poll is a React library for creating polls like Twitter or Facebook. It is easy to use and flexible, and allows developers to create polls of different types, with different visualization options and analysis data.",
+        "Repositorio":"https://github.com/JosephSB/react-twitter-poll",
+        "Demo": "https://www.npmjs.com/package/react-twitter-poll", 
+        "technologies":[              
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            }
+        ]
+    }
+]
