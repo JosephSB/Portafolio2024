@@ -1,9 +1,9 @@
 [
     {
         "id": "exp-001",
-        "title": "Practicante de desarrollo fullstack JavaScript",
+        "title": "Desarrollador fullstack JavaScript",
         "date": "Oct 2023 - Present",
-        "body": "Durante mi trabajo como practicante fullstack en JavaScript, tuve la oportunidad de desarrollar  dos proyectos. Por un lado, diseñé y desarrollé un sistema para el envío de múltiples mensajes utilizando la API de WhatsApp y un bot en Node.js, lo que me permitió explorar la automatización y la comunicación a través de esta plataforma. Por otro lado, contribuí a la creación de Pozicion, un sitio web de noticias construido con Next.js que se integró de manera eficiente con un backend desarrollado en Laravel.",
+        "body": "Durante mi trabajo como fullstack en JavaScript, tuve la oportunidad de desarrollar  dos proyectos. Por un lado, diseñé y desarrollé un sistema para el envío de múltiples mensajes utilizando la API de WhatsApp y un bot en Node.js, lo que me permitió explorar la automatización y la comunicación a través de esta plataforma. Por otro lado, contribuí a la creación de Pozicion, un sitio web de noticias construido con Next.js que se integró de manera eficiente con un backend desarrollado en Laravel.",
         "skills": ["ReactJS", "NodeJS", "NextJS", "TypeScript", "MySQL"]
     },
     {

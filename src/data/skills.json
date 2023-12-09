@@ -8,6 +8,10 @@
                 "icon": "svg/reactjs.svg"
             },
             {
+                "name": "Graphql",
+                "icon": "svg/graphql.svg"
+            },
+            {
                 "name": "NextJS",
                 "icon": "svg/nextjs.svg"
             },
@@ -40,6 +44,10 @@
             {
                 "name": "SocketIO",
                 "icon": "svg/socketio.svg"
+            },
+            {
+                "name": "Graphql",
+                "icon": "svg/graphql.svg"
             },
             {
                 "name": "PHP",
