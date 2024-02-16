@@ -1,27 +1,34 @@
 [
     {
         "id": "exp-001",
+        "title": "Desarrollador Frontend",
+        "date": "Ene 2024 - Present",
+        "body": "Durante mi trabajo como frontend tuve la oportunidad de desarrollar dos proyectos. Por un lado, desarrollé un backend para calificar preguntas usando NestJS y MongoDB. Por otro lado, continuar el desarrollo de la aplicacion web en ReactJS.",
+        "skills": ["Azure", "NodeJS", "NestJS", "TypeScript", "MongoDB"]
+    },
+    {
+        "id": "exp-002",
         "title": "Desarrollador fullstack JavaScript",
-        "date": "Oct 2023 - Present",
+        "date": "Oct 2023 - Dic 2023",
         "body": "Durante mi trabajo como fullstack en JavaScript, tuve la oportunidad de desarrollar  dos proyectos. Por un lado, diseñé y desarrollé un sistema para el envío de múltiples mensajes utilizando la API de WhatsApp y un bot en Node.js, lo que me permitió explorar la automatización y la comunicación a través de esta plataforma. Por otro lado, contribuí a la creación de Pozicion, un sitio web de noticias construido con Next.js que se integró de manera eficiente con un backend desarrollado en Laravel.",
         "skills": ["ReactJS", "NodeJS", "NextJS", "TypeScript", "MySQL"]
     },
     {
-        "id": "exp-002",
+        "id": "exp-003",
         "title": "Desarrollador FullStack",
         "date": "Ene 2023 - Set 2023",
         "body": "Como desarrollador fullstack JavaScript, continué el desarrollo de aplicaciones web utilizando React.js y Node.js (Express), empleando Sequelize para consultas de base de datos y Azure Storage para almacenamiento. Además, diseñé un sistema de recorte de imágenes con Event Grid de Azure y establecí un sistema OAuth básico para la integración con otras plataformas.",
         "skills": ["ReactJS", "NodeJS", "TypeScript", "Azure Blob Storage", "Azure Functions", "OAuth", "MySQL"]
     },
     {
-        "id": "exp-003",
+        "id": "exp-004",
         "title": "Frontend Developer",
         "date": "Feb 2022 - Set 2022",
         "body": "Desarrollé tanto el portal como el administrador del portal inmobiliario de MercadoCasa, manteniendo y añadiendo nuevas funcionalidades al API en Node.js. Además, diseñé el portal inmobiliario utilizando React.js y Next.js, con la capacidad de consumir datos de Elasticsearch para una experiencia de búsqueda avanzada.",
         "skills": ["ReactJS", "NodeJS", "NextJS", "ElasticSearch", "TypeScript", "MySQL"]
     },
     {
-        "id": "exp-004",
+        "id": "exp-005",
         "title": "Practicante de programación Frontend",
         "date": "Ago 2021 - Ene 2022",
         "body": "Realicé la maquetación de correos electrónicos, así como la creación de sitios web frontend utilizando una combinación de HTML, CSS, JavaScript y React.js para brindar una experiencia de usuario completa y atractiva.",

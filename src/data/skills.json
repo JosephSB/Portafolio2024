@@ -36,6 +36,10 @@
             {
                 "name": "NodeJS",
                 "icon": "svg/nodejs.svg"
+            },
+            {
+                "name": "NestJS",
+                "icon": "svg/nestjs.svg"
             },   
             {
                 "name": "Express",
