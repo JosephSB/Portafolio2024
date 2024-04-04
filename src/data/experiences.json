@@ -3,8 +3,8 @@
         "id": "exp-001",
         "title": "Desarrollador Frontend",
         "date": "Ene 2024 - Present",
-        "body": "Durante mi trabajo como frontend tuve la oportunidad de desarrollar dos proyectos. Por un lado, desarrollé un backend para calificar preguntas usando NestJS y MongoDB. Por otro lado, continuar el desarrollo de la aplicacion web en ReactJS.",
-        "skills": ["Azure", "NodeJS", "NestJS", "TypeScript", "MongoDB"]
+        "body": "Durante mi trabajo como frontend tuve la oportunidad de desarrollar dos proyectos. Por un lado, desarrollé un backend para calificar preguntas usando NestJS, Testing con Vitest y de Base de datos MongoDB. Por otro lado, continuar el desarrollo de la aplicacion web en ReactJS.",
+        "skills": ["Azure", "NodeJS", "NestJS", "Vitest", "TypeScript", "MongoDB"]
     },
     {
         "id": "exp-002",

@@ -50,14 +50,15 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
     {DataExperiences.map((item) => <CardExperience {...item} />)}
   </div>
   <div class="home-exp">
-    <p class="home-subtitle">Side Projects</p>
+    <p class="home-subtitle">Proyectos Digitales</p>
     <div class="home-sideprojects-content">
       {
         DataSideProjects.map((item, index) => (
           <CardSideProject
             id={item.id}
-            className={`div${index + 1}`}
+            /*className={`div${index + 1}`}*/
             title={item.name}
+            subtitle={item.description}
             skills={item.technologies.map((x) => x.name)}
             image={item.portadas[0]}
             Repositorio={item.Repositorio}
@@ -178,7 +179,8 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
   .home-sideprojects-content{
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,300px));
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
     margin: 1rem 0;
     margin-bottom: 2rem;
   }

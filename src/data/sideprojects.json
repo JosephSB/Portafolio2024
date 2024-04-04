@@ -3,6 +3,28 @@
         "id": "sidep-001",
         "isTop": true,
         "portadas" : [
+            "p2/portada1.webp"
+        ],
+        "name":"CVMATCHER",
+        "tags" : ["Side Project", "Frontend","Backend"],
+        "description" : "CVMATCHER 🚀 es tu aliado digital para encontrar trabajo. Con inteligencia artificial 🤖, analiza tu CV con las ofertas laborales, brindándote un análisis detallado y recomendaciones para destacar. ¡Fácil de usar, con pagos seguros con Stripe! 💼 #Empleo #IA",
+        "Repositorio": "",
+        "Demo": "https://www.cvmatcher.app/", 
+        "technologies":[       
+            {
+                "name": "NestJS",
+                "icon": "svg/nestjs.svg"
+            },       
+            {
+                "name": "Angular",
+                "icon": "svg/angularjs.svg"
+            }
+        ]
+    },
+    {
+        "id": "sidep-002",
+        "isTop": true,
+        "portadas" : [
             "p1/portada1.webp",
             "p1/preview.gif"
         ],
