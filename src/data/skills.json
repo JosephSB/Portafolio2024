@@ -6,6 +6,10 @@
             {
                 "name": "ReactJS",
                 "icon": "svg/reactjs.svg"
+            },       
+            {
+                "name": "Angular",
+                "icon": "svg/angularjs.svg"
             },
             {
                 "name": "Graphql",

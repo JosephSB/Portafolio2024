@@ -68,6 +68,28 @@
         ]
     },
     {
+        "id":"project-012",
+        "isTop": true,
+        "portadas" : [
+            "p12/portada1.webp",
+            "p12/portada2.webp",
+            "p12/portada3.webp",
+            "p12/portada4.webp",
+            "p12/portada5.webp"
+        ],
+        "name":"GiphyApp",
+        "tags" : ["Api","Angular"],
+        "description" : "Explora un mundo de diversión con solo unos toques. 📱🔎 Busca, guarda y comparte tus GIFs favoritos al instante. 💾 ¡Haz que tus conversaciones sean más emocionantes y expresivas con GiphyApp!",
+        "Repositorio": "https://github.com/JosephSB/giphy-app",
+        "Demo": null,
+        "technologies":[              
+            {
+                "name": "Angular",
+                "icon": "svg/angularjs.svg"
+            }
+        ]
+    },
+    {
         "id":"project-003",
         "isTop": false,
         "portadas" : [
@@ -178,7 +200,7 @@
     },
     {
         "id":"project-007",
-        "isTop": true,
+        "isTop": false,
         "portadas" : [
             "p7/portada1.webp",
             "p7/portada2.webp",
