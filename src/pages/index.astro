@@ -7,6 +7,7 @@ import DataSideProjects from "../data/sideprojects.json";
 import DataSkills from "../data/skills.json";
 import CardProject from "../components/CardProject.astro";
 import CardSideProject from "../components/CardSideProject.astro";
+import { Icon } from "astro-icon/components";
 import "../styles/GridGallery.css";
 import { STORGE_BLOBS } from "../config";
 
@@ -14,35 +15,45 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
 ---
 
 <Layout
-  description="Bienvenido al portafolio de Joseph Silva Bendezu, tambien conocido en el mundo de los devs como JosephSB"
-  title="Joseph Silva Bendezu - Software Engineer, FullStack Developer"
+  description="Bienvenido al portafolio de Joseph Nahun Silva Bendezu, tambien conocido en el mundo de los devs como JosephSB"
+  title="Joseph Nahun Silva Bendezu - Software Engineer, FullStack Developer"
 >
   <div class="home-banner">
     <div>
-      <h1 class="banner-title">&gt;&lowbar; Joseph Silva Bendezu</h1>
-      <p class="banner-subtitle">Software Engineer | FullStack Developer</p>
+      <h1 class="banner-title">&gt;&lowbar; Joseph Nahun Silva Bendezu</h1>
+      <p class="banner-subtitle">Software Engineer | AI Engineer | FullStack Developer</p>
     </div>
     <img
       class="banner-img"
       src="/images/FotoJoseph.webp"
-      alt="Joseph Silva Bendezu"
+      alt="Joseph Nahun Silva Bendezu"
     />
   </div>
   <div class="home-about">
     <p class="home-subtitle">Sobre Mi</p>
     <p class="about-text">
-      ¡Hola! 😃 Mi nombre es Joseph Nahun Silva Bendezu, tengo 21 años y vivo en
-      Lima, Perú 🇵🇪. Soy un apasionado de la tecnología y la informática 💻, por
-      eso estoy estudiando Ingeniería de Software 🎓. A principios de 2020,
-      comencé mi carrera en Ingeniería de Software y decidí especializarme en
-      Desarrollo Web 🌐. Empecé mi viaje de aprendizaje viendo videos en YouTube
-      📺 y luego amplié mis conocimientos a través de Udemy, la documentación
-      oficial y otras plataformas educativas. Me encanta poner en práctica lo
-      que aprendo al trabajar en proyectos personales, la mayoría de los cuales
-      comparto en mi GitHub 🚀. En este momento, tengo conocimientos sólidos en
-      tecnologías como TypeScript, Node.js, ReactJS, MySQL, MongoDB y Google
-      Cloud ☁️. ¡Siempre estoy buscando nuevas formas de aprender y crecer en
-      este emocionante campo! 👨‍💻✨
+      Soy Joseph Nahun Silva Bendezu, Ingeniero de Software Senior radicado en
+      Lima, Perú, con más de 6 años de experiencia diseñando y desarrollando
+      aplicaciones web de extremo a extremo.
+      <br /><br />
+      Me especializo en Inteligencia Artificial aplicada a producto: agentes
+      inteligentes, búsqueda vectorial, prompt engineering, integraciones con
+      OpenAI y Gemini Enterprise Platform, y automatización de procesos con
+      n8n.
+      <br /><br />
+      Domino un stack Fullstack moderno: TypeScript, NestJS, NodeJS, ReactJS,
+      Angular, NextJS, GraphQL, PostgreSQL, MongoDB, Docker, Google Cloud y
+      AWS, además de metodologías ágiles (SCRUM), testing (Vitest, Jest) y
+      prácticas DevOps.
+      <br /><br />
+      A lo largo de mi carrera he liderado equipos de más de 6 personas,
+      gestionando la planificación técnica, la calidad del código y la entrega
+      continua. Me caracterizan el liderazgo, la resiliencia y la capacidad de
+      sostener el ritmo de proyectos complejos hasta llevarlos a producción.
+      <br /><br />
+      Adicionalmente soy fundador de CVMATCHER, una plataforma de
+      empleabilidad impulsada por IA donde aplico y valido muchas de estas
+      prácticas.
     </p>
   </div>
   <div class="home-exp">
@@ -99,11 +110,7 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
             <ul>
               {item.skills.map((x) => (
                 <li>
-                  <img
-                    class="skill-icon"
-                    src={`${STORGE_BLOBS}${x.icon}`}
-                    loading="lazy"
-                  />
+                  <Icon class="skill-icon" name={x.icon} />
                   {x.name}
                 </li>
               ))}
@@ -238,7 +245,7 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
   .skill-icon {
     width: 18px;
     height: 18px;
-    filter: var(--filter-icon);
+    color: var(--text-color);
   }
   .container-contact {
     width: 100%;

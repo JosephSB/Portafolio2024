@@ -6,18 +6,34 @@
             "p2/portada1.webp"
         ],
         "name":"CVMATCHER",
-        "tags" : ["Side Project", "Frontend","Backend"],
-        "description" : "CVMATCHER 🚀 es tu aliado digital para encontrar trabajo. Con inteligencia artificial 🤖, analiza tu CV con las ofertas laborales, brindándote un análisis detallado y recomendaciones para destacar. ¡Fácil de usar, con pagos seguros con Stripe! 💼 #Empleo #IA",
+        "tags" : ["StartUp", "Frontend","Backend"],
+        "description" : "CVMATCHER 🚀 es una plataforma de empleabilidad impulsada por IA que ya conecta a más de 100,000 estudiantes con oportunidades laborales. Con agentes inteligentes, búsqueda vectorial y prompt engineering, analiza tu CV frente a las ofertas y entrega recomendaciones personalizadas. Incluye un bot de WhatsApp para buscar prácticas, revisar CVs y simular entrevistas. 💼🤖 #Empleo #IA",
         "Repositorio": "",
         "Demo": "https://www.cvmatcher.app/", 
-        "technologies":[       
+        "technologies":[
             {
                 "name": "NestJS",
                 "icon": "svg/nestjs.svg"
-            },       
+            },
+                        {
+                "name": "Gemini Enterprise",
+                "icon": "svg/gemini.svg"
+            },
             {
                 "name": "Angular",
                 "icon": "svg/angularjs.svg"
+            },
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            },
+            {
+                "name": "GCloud",
+                "icon": "svg/gcloud.svg"
+            },
+            {
+                "name": "Docker",
+                "icon": "svg/docker.svg"
             }
         ]
     },

@@ -5,27 +5,27 @@
         "skills": [
             {
                 "name": "ReactJS",
-                "icon": "svg/reactjs.svg"
-            },       
-            {
-                "name": "Angular",
-                "icon": "svg/angularjs.svg"
+                "icon": "simple-icons:react"
             },
             {
-                "name": "Graphql",
-                "icon": "svg/graphql.svg"
+                "name": "Angular",
+                "icon": "simple-icons:angular"
             },
             {
                 "name": "NextJS",
-                "icon": "svg/nextjs.svg"
+                "icon": "simple-icons:nextdotjs"
             },
             {
                 "name": "Astro",
-                "icon": "svg/astro.svg"
+                "icon": "simple-icons:astro"
+            },
+            {
+                "name": "TypeScript",
+                "icon": "simple-icons:typescript"
             },
             {
                 "name": "Sass",
-                "icon": "svg/sass.svg"
+                "icon": "simple-icons:sass"
             }
         ]
     },
@@ -34,36 +34,32 @@
         "name": "Backend",
         "skills": [
             {
-                "name": "TypeScript",
-                "icon": "svg/typescript.svg"
+                "name": "NestJS",
+                "icon": "simple-icons:nestjs"
             },
             {
                 "name": "NodeJS",
-                "icon": "svg/nodejs.svg"
+                "icon": "simple-icons:nodedotjs"
             },
             {
-                "name": "NestJS",
-                "icon": "svg/nestjs.svg"
-            },   
-            {
                 "name": "Express",
-                "icon": "svg/express.svg"
+                "icon": "simple-icons:express"
+            },
+            {
+                "name": "GraphQL",
+                "icon": "simple-icons:graphql"
             },
             {
                 "name": "SocketIO",
-                "icon": "svg/socketio.svg"
-            },
-            {
-                "name": "Graphql",
-                "icon": "svg/graphql.svg"
+                "icon": "simple-icons:socketdotio"
             },
             {
                 "name": "PHP",
-                "icon": "svg/php.svg"
+                "icon": "simple-icons:php"
             },
             {
                 "name": "Java",
-                "icon": "svg/java.svg"
+                "icon": "simple-icons:openjdk"
             }
         ]
     },
@@ -72,40 +68,92 @@
         "name": "Database",
         "skills": [
             {
+                "name": "PostgreSQL",
+                "icon": "simple-icons:postgresql"
+            },
+            {
                 "name": "MongoDB",
-                "icon": "svg/mongo.svg"
+                "icon": "simple-icons:mongodb"
             },
             {
                 "name": "MySQL",
-                "icon": "svg/mysql.svg"
+                "icon": "simple-icons:mysql"
             },
             {
                 "name": "ElasticSearch",
-                "icon": "svg/elasticsearch.svg"
+                "icon": "simple-icons:elasticsearch"
             }
         ]
     },
     {
         "id": "skill-004",
-        "name": "Devops",
+        "name": "IA & Automation",
         "skills": [
             {
-                "name": "Docker",
-                "icon": "svg/docker.svg"
+                "name": "OpenAI",
+                "icon": "simple-icons:openai"
             },
             {
-                "name": "Linux",
-                "icon": "svg/linux.svg"
+                "name": "Gemini Enterprise Platform",
+                "icon": "simple-icons:googlegemini"
+            },
+            {
+                "name": "Prompt Engineering",
+                "icon": "mdi:message-processing-outline"
+            },
+            {
+                "name": "Vector Search",
+                "icon": "mdi:vector-triangle"
+            },
+            {
+                "name": "Generative AI",
+                "icon": "mdi:robot-outline"
             }
         ]
     },
     {
         "id": "skill-005",
+        "name": "Devops",
+        "skills": [
+            {
+                "name": "Docker",
+                "icon": "simple-icons:docker"
+            },
+            {
+                "name": "Linux",
+                "icon": "simple-icons:linux"
+            }
+        ]
+    },
+    {
+        "id": "skill-006",
         "name": "Cloud",
         "skills": [
             {
-                "name": "GCloud",
-                "icon": "svg/gcloud.svg"
+                "name": "Google Cloud",
+                "icon": "simple-icons:googlecloud"
+            },
+            {
+                "name": "AWS",
+                "icon": "simple-icons:amazonwebservices"
+            }
+        ]
+    },
+    {
+        "id": "skill-007",
+        "name": "Dev Tools",
+        "skills": [
+            {
+                "name": "Claude Code",
+                "icon": "simple-icons:claude"
+            },
+            {
+                "name": "Codex",
+                "icon": "simple-icons:openai"
+            },
+            {
+                "name": "n8n",
+                "icon": "simple-icons:n8n"
             }
         ]
     }

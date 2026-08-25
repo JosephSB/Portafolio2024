@@ -1,37 +1,58 @@
 [
     {
         "id": "exp-001",
-        "title": "Desarrollador Frontend",
-        "date": "Ene 2024 - Present",
-        "body": "Durante mi trabajo como frontend tuve la oportunidad de desarrollar dos proyectos. Por un lado, desarrollé un backend para calificar preguntas usando NestJS, Testing con Vitest y de Base de datos MongoDB. Por otro lado, continuar el desarrollo de la aplicacion web en ReactJS.",
-        "skills": ["Azure", "NodeJS", "NestJS", "Vitest", "TypeScript", "MongoDB"]
+        "title": "CEO",
+        "date": "Ene 2025 - Actualidad",
+        "body": "En CVMATCHER lidero la estrategia tecnológica y el desarrollo de una plataforma de empleabilidad que conecta a más de 50,000 estudiantes. Diseñé la arquitectura con NestJS, PostgreSQL, Angular y ReactJS, e implementé agentes de IA con búsqueda vectorial y prompt engineering para recomendar ofertas laborales con un 60% de mejor coincidencia. Desarrollé un bot de WhatsApp para búsqueda de prácticas, revisión de CVs y simulación de entrevistas, además de la infraestructura en Google Cloud (VM, Cloud Run, Cloud Build, Generative AI), Supabase y Render. Gestioné un equipo de 5 personas bajo metodologías ágiles.",
+        "skills": ["NestJS", "PostgreSQL", "Angular", "ReactJS", "GCloud", "IA", "TypeScript", "Docker"]
     },
     {
         "id": "exp-002",
-        "title": "Desarrollador fullstack JavaScript",
-        "date": "Oct 2023 - Dic 2023",
-        "body": "Durante mi trabajo como fullstack en JavaScript, tuve la oportunidad de desarrollar  dos proyectos. Por un lado, diseñé y desarrollé un sistema para el envío de múltiples mensajes utilizando la API de WhatsApp y un bot en Node.js, lo que me permitió explorar la automatización y la comunicación a través de esta plataforma. Por otro lado, contribuí a la creación de Pozicion, un sitio web de noticias construido con Next.js que se integró de manera eficiente con un backend desarrollado en Laravel.",
-        "skills": ["ReactJS", "NodeJS", "NextJS", "TypeScript", "MySQL"]
+        "title": "FullStack Developer Semi Senior",
+        "date": "Nov 2025 - Jun 2026",
+        "body": "En la Universidad Tecnológica del Perú migré microservicios críticos de .NET a NestJS mejorando el performance en un 20%. Diseñé la arquitectura hexagonal para el backend NestJS y el frontend Next.js del proyecto Portal Admin 2.0, optimizando escalabilidad y rendimiento. Implementé autenticación con Keycloak y AWS, brindé soporte a la plataforma de encuestas en .NET y desarrollé procedimientos almacenados de alto rendimiento en SQL Server.",
+        "skills": ["NestJS", "NextJS", "TypeScript", "Keycloak", "AWS", ".NET", "SQL Server"]
     },
     {
         "id": "exp-003",
-        "title": "Desarrollador FullStack",
-        "date": "Ene 2023 - Set 2023",
-        "body": "Como desarrollador fullstack JavaScript, continué el desarrollo de aplicaciones web utilizando React.js y Node.js (Express), empleando Sequelize para consultas de base de datos y Azure Storage para almacenamiento. Además, diseñé un sistema de recorte de imágenes con Event Grid de Azure y establecí un sistema OAuth básico para la integración con otras plataformas.",
-        "skills": ["ReactJS", "NodeJS", "TypeScript", "Azure Blob Storage", "Azure Functions", "OAuth", "MySQL"]
+        "title": "Desarrollador Full Stack JavaScript & Prompt Engineer",
+        "date": "May 2024 - Jul 2025",
+        "body": "En TRUSTCORP (Chile) automaticé el proceso de auditorías de llamadas para un call center, reduciendo el trabajo manual en un 90% y mejorando la precisión de las transcripciones en un 75%. Desarrollé un CRM chatbot integrando servicios de Meta (WhatsApp, Facebook, Instagram, TikTok). Migré aplicaciones de PHP a NodeJS con APIs REST en Express y mejoré la calidad de audios con Python. En Google Cloud implementé un flujo para almacenar y transcribir audios usando Speech-to-Text Telephony y Chirp2.",
+        "skills": ["NodeJS", "Express", "Python", "GCloud", "IA", "TypeScript", "PHP"]
     },
     {
         "id": "exp-004",
-        "title": "Frontend Developer",
-        "date": "Feb 2022 - Set 2022",
-        "body": "Desarrollé tanto el portal como el administrador del portal inmobiliario de MercadoCasa, manteniendo y añadiendo nuevas funcionalidades al API en Node.js. Además, diseñé el portal inmobiliario utilizando React.js y Next.js, con la capacidad de consumir datos de Elasticsearch para una experiencia de búsqueda avanzada.",
-        "skills": ["ReactJS", "NodeJS", "NextJS", "ElasticSearch", "TypeScript", "MySQL"]
+        "title": "Desarrollador Backend",
+        "date": "Ene 2024 - Abr 2024",
+        "body": "En ACL (Chile) desarrollé un backend robusto en NestJS utilizando MongoDB como base de datos. Implementé pruebas unitarias y E2E con Vitest, evaluadas con SonarQube para garantizar la calidad del código. Diseñé un middleware de autenticación basado en JWT Tokens integrado con Azure Active Directory para la gestión segura de accesos.",
+        "skills": ["NestJS", "MongoDB", "Vitest", "TypeScript", "Azure", "JWT"]
     },
     {
         "id": "exp-005",
-        "title": "Practicante de programación Frontend",
+        "title": "Desarrollador Full Stack JavaScript",
+        "date": "Sept 2023 - Dic 2023",
+        "body": "En Preciso - Agencia de Contenidos lideré el desarrollo de pozicion.com, una red social de noticias compuesta por tres módulos: portal, panel de administración y sistema de autenticación. Implementé GraphQL, ReactJS y NextJS en el frontend, con backends en PHP Laravel y NodeJS. Integré OAuth2.0 para SSO y apliqué SCRUM. Optimicé SEO con etiquetas Open Graph para mejorar la visibilidad del contenido.",
+        "skills": ["ReactJS", "NextJS", "GraphQL", "NodeJS", "PHP", "OAuth2", "SEO"]
+    },
+    {
+        "id": "exp-006",
+        "title": "Desarrollador Full Stack JavaScript",
+        "date": "Ene 2023 - Ago 2023",
+        "body": "En XSCOPE, INC (Estados Unidos) desarrollé aplicaciones web con ReactJS y NodeJS/Express, usando Sequelize para consultas y Azure Blob Storage para almacenamiento. Diseñé un sistema de recorte de imágenes con Azure Event Grid que redujo en 50% el tiempo de carga. Implementé autenticación OAuth2 y webhooks para integrarse con otras plataformas de manera segura.",
+        "skills": ["ReactJS", "NodeJS", "Sequelize", "Azure Blob Storage", "Azure Event Grid", "OAuth2"]
+    },
+    {
+        "id": "exp-007",
+        "title": "Desarrollador Frontend",
+        "date": "Feb 2022 - Sept 2022",
+        "body": "En Barter Peru SAC desarrollé el 100% del administrador y portal inmobiliario MercadoCasa con ReactJS y NextJS, reduciendo el tiempo de carga en un 30%. Implementé Open Graph y estrategias SEO logrando un 15% más de visibilidad en buscadores. Añadí funcionalidades a la API REST en NodeJS consumiendo datos de Elasticsearch para una búsqueda avanzada.",
+        "skills": ["ReactJS", "NextJS", "NodeJS", "ElasticSearch", "SEO"]
+    },
+    {
+        "id": "exp-008",
+        "title": "Practicante de Programación Frontend",
         "date": "Ago 2021 - Ene 2022",
-        "body": "Realicé la maquetación de correos electrónicos, así como la creación de sitios web frontend utilizando una combinación de HTML, CSS, JavaScript y React.js para brindar una experiencia de usuario completa y atractiva.",
-        "skills": ["ReactJS", "JS", "CSS", "HTML"]
+        "body": "En Preciso - Agencia de Contenidos desarrollé un sistema en NodeJS para enviar mensajes masivos integrando la API de WhatsApp (Meta), automatizando la comunicación con clientes. También diseñé y desarrollé interfaces web frontend con ReactJS, HTML y CSS.",
+        "skills": ["ReactJS", "NodeJS", "JS", "HTML", "CSS"]
     }
 ]

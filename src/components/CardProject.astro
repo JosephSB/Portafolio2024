@@ -12,9 +12,9 @@ interface Props {
 const { id, title, subtitle, skills, image, className = "" } = Astro.props;
 ---
 
-<a class={"card-project" + " " + className} href={`/projects/${id}`}>
+<a class={"card-project" + " " + className} href={`${id}`}>
   <div class="container">
-    <img src={`${STORGE_BLOBS}projects/${image}`} alt={title} loading="lazy" />
+    <img src={`${STORGE_BLOBS}${image}`} alt={title} loading="lazy" />
     <div class="card-project-float">
       <div class="content">
         <p class="title">{title}</p>
