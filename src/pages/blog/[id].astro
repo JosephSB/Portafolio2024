@@ -1,0 +1,147 @@
+---
+import HtmlGeneralLayout from "../../layouts/HtmlGeneralLayout.astro";
+import DataBlog from "../../data/blog.json";
+import { STORGE_BLOBS } from "../../config";
+import { marked } from "marked";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+
+export async function getStaticPaths() {
+  return DataBlog.map((item) => ({
+    params: { id: item.id },
+    props: { ...item },
+  }));
+}
+
+const { title, excerpt, date, tags, cover, body } = Astro.props as any;
+const html = marked.parse(body);
+const formattedDate = new Date(date).toLocaleDateString("es-PE", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<HtmlGeneralLayout description={excerpt} title={`${title} | Blog · Joseph Silva Bendezu`}>
+  <article class="post-detail">
+    <Breadcrumb
+      items={[
+        { label: "JosephSB", href: "/" },
+        { label: "Blog", href: "/blog" },
+        { label: title },
+      ]}
+    />
+
+    <p class="post-date">{formattedDate}</p>
+    <h1 class="post-title">{title}</h1>
+    <p class="post-excerpt">{excerpt}</p>
+    <ul class="post-tags">{tags.map((t: string) => <li>{t}</li>)}</ul>
+
+    <img class="post-cover" src={`${STORGE_BLOBS}${cover}`} alt={title} />
+
+    <div class="prose" set:html={html}></div>
+  </article>
+</HtmlGeneralLayout>
+
+<style is:global>
+  .prose { color: var(--text-color); line-height: 1.75; font-size: 16px; }
+  .prose h1, .prose h2, .prose h3 {
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    line-height: 1.3;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .prose h1 { font-size: 1.4rem; color: var(--primary-color); }
+  .prose h2 { font-size: 1.1rem; }
+  .prose h3 { font-size: 1rem; }
+  .prose p { color: var(--text-color-2); margin: 1rem 0; }
+  .prose a { color: var(--primary-color); text-decoration: underline; }
+  .prose ul, .prose ol { color: var(--text-color-2); padding-left: 1.25rem; }
+  .prose li { margin: 0.4rem 0; }
+  .prose blockquote {
+    border-left: 3px solid var(--primary-color);
+    padding: 0.25rem 1rem;
+    margin: 1.5rem 0;
+    color: var(--text-color-2);
+    font-style: italic;
+    background-color: rgba(20, 248, 152, 0.04);
+    border-radius: 0 8px 8px 0;
+  }
+  .prose code {
+    background-color: var(--bd-color-2);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--primary-color);
+  }
+  .prose pre {
+    background-color: var(--bd-color-2);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .prose pre code {
+    background: transparent;
+    padding: 0;
+    color: var(--text-color);
+    font-size: 13px;
+  }
+  .prose img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; }
+</style>
+
+<style>
+  .post-detail { width: 100%; padding-bottom: 3rem; }
+  .detail-nav {
+    padding: 0;
+    margin: 1rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    flex-wrap: wrap;
+  }
+  .detail-nav a { color: var(--text-color); }
+  .detail-nav-highlight {
+    color: var(--primary-color);
+    font-family: var(--secondary-font);
+  }
+  .post-date {
+    color: var(--text-color-2);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 1.5rem 0 0.5rem;
+  }
+  .post-title {
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    margin: 0 0 1rem;
+    font-size: 1.6rem;
+    line-height: 1.3;
+  }
+  .post-excerpt { color: var(--text-color-2); font-size: 1rem; margin: 0 0 1rem; }
+  .post-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .post-tags li {
+    padding: 0.3rem 0.7rem;
+    background-color: var(--bd-color-2);
+    border-radius: 999px;
+    color: var(--text-color);
+    font-size: 11px;
+  }
+  .post-cover {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+</style>

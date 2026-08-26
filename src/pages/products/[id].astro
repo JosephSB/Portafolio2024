@@ -1,51 +1,50 @@
 ---
 import HtmlGeneralLayout from "../../layouts/HtmlGeneralLayout.astro";
-import DataProjects from "../../data/projects.json";
+import DataSideProjects from "../../data/sideprojects.json";
 import { STORGE_BLOBS } from "../../config";
 import { Icon } from "astro-icon/components";
 import Breadcrumb from "../../components/Breadcrumb.astro";
-import type { IProject } from "../../interfaces/Project.interfaces";
 
 export async function getStaticPaths() {
-  return DataProjects.map((item) => ({
+  return DataSideProjects.map((item) => ({
     params: { id: item.id },
     props: { ...item },
   }));
 }
 
 const {
-  portadas,
   name,
   description,
   tags,
   technologies,
   Demo,
   Repositorio,
-} = Astro.props as IProject;
+  portadas,
+} = Astro.props as any;
 ---
 
 <HtmlGeneralLayout
   description={description}
-  title={`Proyecto ${name} | Joseph Silva Bendezu - Software Engineer`}
+  title={`${name} | Producto Digital · Joseph Silva Bendezu`}
 >
-  <div class="project-detail">
+  <div class="product-detail">
     <Breadcrumb
       items={[
         { label: "JosephSB", href: "/" },
-        { label: "Proyectos", href: "/projects" },
+        { label: "Productos", href: "/products" },
         { label: name },
       ]}
     />
 
-    <header class="project-hero">
+    <header class="product-hero">
       <div class="hero-text">
-        <p class="hero-eyebrow">Proyecto</p>
-        <h1 class="project-title">{name}</h1>
-        <p class="project-description">{description}</p>
+        <p class="hero-eyebrow">Producto Digital</p>
+        <h1 class="product-title">{name}</h1>
+        <p class="product-description">{description}</p>
         <div class="cta-row">
           {Demo && (
             <a class="cta primary" href={Demo} target="_blank" rel="noopener">
-              <Icon name="mdi:open-in-new" /> Ver Demo
+              <Icon name="mdi:open-in-new" /> Visitar producto
             </a>
           )}
           {Repositorio && (
@@ -68,13 +67,13 @@ const {
       <div class="meta-block">
         <p class="meta-label">Categorías</p>
         <ul class="chip-list chip-primary">
-          {tags.map((x) => <li>{x}</li>)}
+          {tags.map((x: string) => <li>{x}</li>)}
         </ul>
       </div>
       <div class="meta-block">
         <p class="meta-label">Stack técnico</p>
         <ul class="chip-list">
-          {technologies.map((x) => <li>{x.name}</li>)}
+          {technologies.map((x: any) => <li>{x.name}</li>)}
         </ul>
       </div>
     </section>
@@ -83,7 +82,7 @@ const {
       <section class="gallery-section">
         <h2 class="section-title">Galería</h2>
         <div class="gallery-grid">
-          {portadas.slice(1).map((p) => (
+          {portadas.slice(1).map((p: string) => (
             <img src={`${STORGE_BLOBS}${p}`} alt={name} loading="lazy" />
           ))}
         </div>
@@ -93,8 +92,8 @@ const {
 </HtmlGeneralLayout>
 
 <style>
-  .project-detail { width: 100%; padding-bottom: 4rem; }
-  .project-hero {
+  .product-detail { width: 100%; padding-bottom: 4rem; }
+  .product-hero {
     display: grid;
     grid-template-columns: 1fr 1.1fr;
     gap: 3rem;
@@ -108,14 +107,14 @@ const {
     letter-spacing: 0.1em;
     margin: 0 0 1rem;
   }
-  .project-title {
+  .product-title {
     color: var(--text-color);
     font-family: var(--secondary-font);
     margin: 0 0 1.25rem;
     font-size: 1.75rem;
     line-height: 1.25;
   }
-  .project-description {
+  .product-description {
     color: var(--text-color-2);
     line-height: 1.75;
     font-size: 15px;
@@ -223,7 +222,7 @@ const {
     background-color: var(--bd-color-2);
   }
   @media screen and (max-width: 800px) {
-    .project-hero { grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0; }
+    .product-hero { grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0; }
     .meta-grid { grid-template-columns: 1fr; padding: 1.5rem; gap: 1.5rem; }
   }
 </style>

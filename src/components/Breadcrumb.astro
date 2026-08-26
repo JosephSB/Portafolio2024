@@ -1,0 +1,67 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumb" aria-label="Migas de pan">
+  <ul>
+    {items.map((c, i) => (
+      <li class={i === items.length - 1 ? "current" : ""}>
+        {c.href && i !== items.length - 1 ? (
+          <a href={c.href}>{c.label}</a>
+        ) : (
+          <span>{c.label}</span>
+        )}
+        {i < items.length - 1 && (
+          <Icon class="sep" name="mdi:chevron-right" />
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .breadcrumb ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    color: var(--text-color);
+  }
+  .breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color-2);
+    font-size: 13px;
+  }
+  .breadcrumb a {
+    color: var(--text-color-2);
+    transition: color 0.2s ease;
+  }
+  .breadcrumb a:hover { color: var(--primary-color); }
+  .breadcrumb .sep {
+    color: var(--text-color-2);
+    font-size: 14px;
+    opacity: 0.6;
+  }
+  .breadcrumb .current span {
+    color: var(--primary-color);
+    font-family: var(--secondary-font);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+</style>

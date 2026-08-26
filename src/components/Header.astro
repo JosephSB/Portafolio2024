@@ -1,9 +1,15 @@
+---
+const currentPath = Astro.url.pathname;
+const isActive = (base: string) => currentPath === base || currentPath.startsWith(base + "/");
+---
+
 <header class="container-header">
   <div class="header">
     <a href="/"><p class="title">JosephSB</p></a>
     <ul class="menu">
-      {/*<li class="menu-link"><a href="/experience">Experience</a></li>*/}
-      <li class="menu-link"><a href="/projects">Proyectos</a></li>
+      <li class="menu-link"><a class={isActive("/products") ? "active" : ""} href="/products">Productos</a></li>
+      <li class="menu-link"><a class={isActive("/blog") ? "active" : ""} href="/blog">Blog</a></li>
+      <li class="menu-link"><a class={isActive("/projects") ? "active" : ""} href="/projects">Proyectos</a></li>
       <li class="menu-link d-none" id="btn-dark">
         <i class="fa-solid fa-moon"></i>
       </li>
@@ -53,6 +59,10 @@
     top: 0;
     left: 0;
     z-index: 5;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: var(--bd-color-transparent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
   .header {
     width: 100%;
@@ -63,8 +73,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    backdrop-filter: blur(10px);
-    background-color: var(--bd-color-transparent);
   }
   .title {
     margin: 0;
@@ -77,16 +85,32 @@
     padding: 0;
     list-style: none;
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
+    align-items: center;
   }
   .menu-link {
     text-decoration: none;
   }
-  .menu-link a, .menu-link i {
+  .menu-link a {
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 14px;
+    transition: color 0.2s ease;
+  }
+  .menu-link a:hover,
+  .menu-link a.active {
+    color: var(--primary-color);
+  }
+  .menu-link i {
     cursor: pointer;
     color: var(--text-color);
   }
-  .d-none{
+  .d-none {
     display: none;
+  }
+  @media screen and (max-width: 600px) {
+    .menu { gap: 0.85rem; }
+    .menu-link a { font-size: 12px; }
+    .title { font-size: 1rem; }
   }
 </style>

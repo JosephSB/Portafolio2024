@@ -1,0 +1,71 @@
+---
+interface Props {
+    class?: string;
+    /** Duración de una vuelta completa en segundos */
+    duration?: number;
+    /** Pausar en hover */
+    pauseOnHover?: boolean;
+}
+
+const {
+    class: className = "",
+    duration = 40,
+    pauseOnHover = true,
+} = Astro.props;
+---
+
+<div
+    class={`carousel ${className} ${pauseOnHover ? "pause-hover" : ""}`}
+    style={`--carousel-duration:${duration}s;`}>
+    <div class="carousel-track">
+        <div class="carousel-group">
+            <slot />
+        </div>
+        <div class="carousel-group" aria-hidden="true">
+            <slot />
+        </div>
+    </div>
+</div>
+
+<style>
+    .carousel {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0,
+            #000 4%,
+            #000 96%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to right,
+            transparent 0,
+            #000 4%,
+            #000 96%,
+            transparent 100%
+        );
+    }
+    .carousel-track {
+        display: flex;
+        width: max-content;
+        animation: carousel-slide var(--carousel-duration, 40s) linear infinite;
+    }
+    .carousel-group {
+        display: flex;
+        gap: 1rem;
+        padding-right: 1rem;
+        flex-shrink: 0;
+    }
+    .carousel.pause-hover:hover .carousel-track {
+        animation-play-state: paused;
+    }
+    @keyframes carousel-slide {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .carousel-track { animation: none; }
+    }
+</style>

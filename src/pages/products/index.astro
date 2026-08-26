@@ -1,36 +1,36 @@
 ---
 import HtmlGeneralLayout from "../../layouts/HtmlGeneralLayout.astro";
-import DataProjects from "../../data/projects.json";
+import DataSideProjects from "../../data/sideprojects.json";
 import CardListItem from "../../components/CardListItem.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 ---
 
 <HtmlGeneralLayout
-  description="Proyectos de desarrollo web en JavaScript, ReactJS, NextJS, NodeJS de Joseph Silva Bendezu."
-  title="Proyectos | Joseph Silva Bendezu - Software Engineer, FullStack Developer"
+  description="Productos digitales creados por Joseph Silva Bendezu: plataformas SaaS, apps con IA, herramientas y librerías open source."
+  title="Productos Digitales | Joseph Silva Bendezu - Software Engineer"
 >
-  <div class="projects-page">
-    <Breadcrumb items={[{ label: "JosephSB", href: "/" }, { label: "Proyectos" }]} />
+  <div class="products-page">
+    <Breadcrumb items={[{ label: "JosephSB", href: "/" }, { label: "Productos" }]} />
     <header class="page-header">
-      <h1 class="page-title">Proyectos</h1>
+      <h1 class="page-title">Productos Digitales</h1>
       <p class="page-lede">
-        Colección de proyectos personales y experimentos técnicos que he
-        construido a lo largo de mi carrera para explorar tecnologías y afinar
-        el oficio.
+        Productos que he construido y mantengo: plataformas SaaS, apps con IA,
+        herramientas y librerías open source. Cada uno resolviendo un problema
+        real de usuarios reales.
       </p>
     </header>
 
     <div class="items-grid">
       {
-        DataProjects.map((item) => (
+        DataSideProjects.map((item) => (
           <CardListItem
-            href={`/projects/${item.id}`}
+            href={`/products/${item.id}`}
             image={item.portadas[0]}
             title={item.name}
             description={item.description}
             tags={item.tags}
             technologies={item.technologies}
-            meta={item.isTop ? "Destacado" : undefined}
+            meta={item.Demo ? "Producto activo" : "En desarrollo"}
           />
         ))
       }
@@ -39,7 +39,7 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
 </HtmlGeneralLayout>
 
 <style>
-  .projects-page { width: 100%; padding-bottom: 3rem; }
+  .products-page { width: 100%; padding-bottom: 3rem; }
   .page-header {
     margin: 1.5rem 0 2.5rem;
     max-width: 720px;

@@ -7,12 +7,29 @@ interface Props {
   subtitle?: string;
   skills: string[];
   className?: string;
+  /** Muestra el overlay siempre encendido en lugar de sólo en hover */
+  alwaysOverlay?: boolean;
+  /** URL base para el link, default `${id}` (uso local en /projects) */
+  href?: string;
 }
 
-const { id, title, subtitle, skills, image, className = "" } = Astro.props;
+const {
+  id,
+  title,
+  subtitle,
+  skills,
+  image,
+  className = "",
+  alwaysOverlay = false,
+  href,
+} = Astro.props;
+const linkHref = href ?? id;
 ---
 
-<a class={"card-project" + " " + className} href={`${id}`}>
+<a
+  class={`card-project ${className} ${alwaysOverlay ? "always-overlay" : ""}`}
+  href={linkHref}
+>
   <div class="container">
     <img src={`${STORGE_BLOBS}${image}`} alt={title} loading="lazy" />
     <div class="card-project-float">
@@ -49,6 +66,7 @@ const { id, title, subtitle, skills, image, className = "" } = Astro.props;
     position: relative;
     cursor: pointer;
     border-radius: 5px;
+    display: block;
   }
 
   .card-project .container {
@@ -61,6 +79,7 @@ const { id, title, subtitle, skills, image, className = "" } = Astro.props;
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
+    display: block;
   }
 
   .card-project-float {
@@ -78,9 +97,13 @@ const { id, title, subtitle, skills, image, className = "" } = Astro.props;
     flex-direction: column;
     background: linear-gradient(
       rgba(0, 0, 0, 0.1) 10%,
-      rgba(0, 0, 0, 0.78) 80%
+      rgba(0, 0, 0, 0.85) 80%
     );
     transition: opacity 300ms ease-in-out 0s;
+  }
+
+  .card-project.always-overlay .card-project-float {
+    opacity: 1;
   }
 
   .card-project:hover .card-project-float {
@@ -93,7 +116,7 @@ const { id, title, subtitle, skills, image, className = "" } = Astro.props;
   }
 
   .card-project:hover .content {
-    transform: translateY(-10%);
+    transform: translateY(-5%);
   }
 
   .card-project .title {
@@ -105,6 +128,7 @@ const { id, title, subtitle, skills, image, className = "" } = Astro.props;
   .card-project .subtitle {
     color: white;
     margin: 0;
+    font-size: 12px;
   }
 
   .card-project .list-skills {
@@ -113,7 +137,8 @@ const { id, title, subtitle, skills, image, className = "" } = Astro.props;
     display: flex;
     gap: 5px;
     list-style: none;
-    margin: 0;
+    margin: 0.5rem 0 0;
     font-size: 0.7rem;
+    flex-wrap: wrap;
   }
 </style>

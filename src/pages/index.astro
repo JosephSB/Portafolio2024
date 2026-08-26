@@ -8,17 +8,16 @@ import DataSkills from "../data/skills.json";
 import CardProject from "../components/CardProject.astro";
 import CardSideProject from "../components/CardSideProject.astro";
 import { Icon } from "astro-icon/components";
-import Aurora from "../components/Aurora.astro";
 import GameOfLife from "../components/GameOfLife.astro";
+import Carousel from "../components/Carousel.astro";
 import "../styles/GridGallery.css";
 import { STORGE_BLOBS } from "../config";
 
-const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
 ---
 
 <Layout
-  description="Bienvenido al portafolio de Joseph Nahun Silva Bendezu, tambien conocido en el mundo de los devs como JosephSB"
-  title="Joseph Nahun Silva Bendezu - Software Engineer, FullStack Developer"
+  description="Soy Joseph Nahun Silva Bendezu, con más de 6 años de experiencia diseñando y desarrollando aplicaciones web, agentes AI, arquitecturas y plataformas SaaS."
+  title="Joseph Nahun Silva Bendezu - Software Engineer, AI Engineer, FullStack Developer"
 >
   <div class="home-banner">
     <GameOfLife cell={12} rate={20} density={0.06} trail={0.08} opacity={0.35} interactive={false} />
@@ -87,7 +86,7 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
     <p class="about-text">
       Soy Joseph Nahun Silva Bendezu, Ingeniero de Software Senior radicado en
       Lima, Perú, con más de 6 años de experiencia diseñando y desarrollando
-      aplicaciones web de extremo a extremo.
+      aplicaciones web, agentes AI, arquitecturas y plataformas SaaS.
       <br /><br />
       Me especializo en Inteligencia Artificial aplicada a producto: agentes
       inteligentes, búsqueda vectorial, prompt engineering, integraciones con
@@ -110,48 +109,53 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
     </p>
   </div>
     <div class="home-exp">
-    <p class="home-subtitle">Productos Digitales</p>
-    <div class="home-sideprojects-content">
+    <div class="section-heading">
+      <p class="home-subtitle">Productos Digitales</p>
+      <a class="section-link" href="/products">Ver todos&nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <Carousel duration={45}>
       {
-        DataSideProjects.map((item, index) => (
-          <CardSideProject
-            id={item.id}
-            /*className={`div${index + 1}`}*/
-            title={item.name}
-            subtitle={item.description}
-            skills={item.technologies.map((x) => x.name)}
-            image={item.portadas[0]}
-            Repositorio={item.Repositorio}
-            demo={item.Demo}
-          />
+        DataSideProjects.map((item) => (
+          <div class="carousel-card sideproject-card">
+            <CardSideProject
+              id={item.id}
+              title={item.name}
+              skills={item.technologies.map((x) => x.name)}
+              image={item.portadas[0]}
+              Repositorio={item.Repositorio}
+              demo={item.Demo}
+              alwaysOverlay
+            />
+          </div>
         ))
       }
-    </div>
+    </Carousel>
   </div>
   <div class="home-exp">
     <p class="home-subtitle">Experiencia</p>
     {DataExperiences.map((item) => <CardExperience {...item} />)}
   </div>
   <div class="home-projects">
-    <p class="home-subtitle">Proyectos</p>
-    <div class="parent">
+    <div class="section-heading">
+      <p class="home-subtitle">Proyectos</p>
+      <a class="section-link" href="/projects">Ver todos&nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <Carousel duration={55}>
       {
-        DataProjectsFilter.map((item, index) => (
-          <CardProject
-            id={item.id}
-            className={`div${index + 1}`}
-            title={item.name}
-            skills={item.technologies.map((x) => x.name)}
-            image={item.portadas[0]}
-          />
+        DataProjects.map((item) => (
+          <div class="carousel-card project-card">
+            <CardProject
+              id={`/projects/${item.id}`}
+              href={`/projects/${item.id}`}
+              title={item.name}
+              skills={item.technologies.map((x) => x.name)}
+              image={item.portadas[0]}
+              alwaysOverlay
+            />
+          </div>
         ))
       }
-    </div>
-    <div class="home-project-link">
-      <a href="/projects"
-        >Ver todos&nbsp;<i class="fa-solid fa-arrow-right"></i></a
-      >
-    </div>
+    </Carousel>
   </div>
   <div class="home-skills">
     <p class="home-subtitle">Tecnologias</p>
@@ -332,13 +336,29 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
   @media screen and (max-width: 900px) {
     .side-gol { display: none; }
   }
-  .home-sideprojects-content{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  .section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
     gap: 1rem;
-    margin: 1rem 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+  }
+  .section-link {
+    color: var(--text-color-2);
+    font-size: 13px;
+    transition: color 0.2s ease;
+  }
+  .section-link:hover { color: var(--primary-color); }
+  .carousel-card {
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .sideproject-card { width: 340px; height: 220px; }
+  .project-card { width: 240px; height: 200px; }
+  @media screen and (max-width: 600px) {
+    .sideproject-card { width: 280px; height: 200px; }
+    .project-card { width: 200px; height: 180px; }
   }
   .home-subtitle {
     margin: 5px 0;

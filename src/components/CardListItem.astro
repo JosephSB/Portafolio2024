@@ -1,0 +1,151 @@
+---
+import { STORGE_BLOBS } from "../config";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  href: string;
+  image: string;
+  title: string;
+  description?: string;
+  tags?: string[];
+  technologies?: { name: string }[];
+  meta?: string;
+}
+
+const {
+  href,
+  image,
+  title,
+  description,
+  tags = [],
+  technologies = [],
+  meta,
+} = Astro.props;
+---
+
+<a class="card-item" href={href}>
+  <div class="card-media">
+    <img src={`${STORGE_BLOBS}${image}`} alt={title} loading="lazy" />
+  </div>
+  <div class="card-body">
+    {meta && <p class="card-meta">{meta}</p>}
+    <h3 class="card-title">{title}</h3>
+    {description && <p class="card-description">{description}</p>}
+    {tags.length > 0 && (
+      <ul class="card-tags">
+        {tags.slice(0, 5).map((t) => <li>{t}</li>)}
+      </ul>
+    )}
+    {technologies.length > 0 && (
+      <ul class="card-tech">
+        {technologies.slice(0, 6).map((t) => <li>{t.name}</li>)}
+      </ul>
+    )}
+    <span class="card-cta">
+      Ver detalle <Icon name="mdi:arrow-right" />
+    </span>
+  </div>
+</a>
+
+<style>
+  .card-item {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(22, 22, 26, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    color: var(--text-color);
+    height: 100%;
+  }
+  .card-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-color);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+  .card-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: var(--bd-color-2);
+  }
+  .card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .card-item:hover .card-media img {
+    transform: scale(1.05);
+  }
+  .card-body {
+    padding: 1.25rem 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .card-meta {
+    color: var(--text-color-2);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+  .card-title {
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+  .card-description {
+    color: var(--text-color-2);
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-tags,
+  .card-tech {
+    list-style: none;
+    padding: 0;
+    margin: 0.25rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .card-tags li {
+    padding: 0.25rem 0.6rem;
+    background-color: rgba(20, 248, 152, 0.08);
+    border: 1px solid rgba(20, 248, 152, 0.25);
+    color: var(--primary-color);
+    border-radius: 999px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .card-tech li {
+    padding: 0.25rem 0.6rem;
+    background-color: var(--bd-color-2);
+    color: var(--text-color-2);
+    border-radius: 6px;
+    font-size: 11px;
+  }
+  .card-cta {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    color: var(--primary-color);
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: gap 0.2s ease;
+  }
+  .card-item:hover .card-cta { gap: 0.6rem; }
+</style>

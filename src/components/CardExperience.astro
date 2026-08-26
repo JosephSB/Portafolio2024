@@ -2,20 +2,22 @@
 interface Props {
   date: string;
   title: string;
+  company?: string;
   body: string;
   skills: string[];
 }
 
-const { date, skills, title, body } = Astro.props;
+const { date, skills, title, company, body } = Astro.props;
 ---
 
 <div class="card-exp">
   <p class="titleDate">{date}</p>
   <div>
     <p class="title">{title}</p>
+    {company && <p class="company">{company}</p>}
     <p>{body}</p>
     <ul class="list-skills">
-        {skills.map( item => <li class="item-skill">{item}</li>)}
+      {skills.map((item) => <li class="item-skill">{item}</li>)}
     </ul>
   </div>
 </div>
@@ -30,6 +32,13 @@ const { date, skills, title, body } = Astro.props;
   .title {
     color: var(--text-color);
     font-weight: bold;
+    margin: 0 0 4px;
+  }
+  .company {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    margin: 0 0 12px;
+    font-weight: 500;
   }
   .list-skills {
     padding: 0;
@@ -46,20 +55,13 @@ const { date, skills, title, body } = Astro.props;
     padding: 0.5rem;
     border-radius: 10px;
   }
-  #text-body span{
-    font-size: 0.9rem;
-    color: var(--primary-color);
-    cursor: pointer;
-  }
-
-  /*---------RESPONSIVE---------*/
   @media screen and (max-width: 600px) {
     .card-exp {
       display: flex;
       flex-direction: column;
       gap: 0;
     }
-    .titleDate{
+    .titleDate {
       margin-bottom: 0;
       margin-top: 2rem;
     }

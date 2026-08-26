@@ -72,6 +72,10 @@
                 "icon": "simple-icons:postgresql"
             },
             {
+                "name": "Redis",
+                "icon": "simple-icons:redis"
+            },
+            {
                 "name": "MongoDB",
                 "icon": "simple-icons:mongodb"
             },
