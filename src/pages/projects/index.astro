@@ -3,6 +3,7 @@ import HtmlGeneralLayout from "../../layouts/HtmlGeneralLayout.astro";
 import DataProjects from "../../data/projects.json";
 import CardListItem from "../../components/CardListItem.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
+import PageTopStrip from "../../components/PageTopStrip.astro";
 ---
 
 <HtmlGeneralLayout
@@ -10,6 +11,7 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
   title="Proyectos | Joseph Silva Bendezu - Software Engineer, FullStack Developer"
 >
   <div class="projects-page">
+    <PageTopStrip />
     <Breadcrumb items={[{ label: "JosephSB", href: "/" }, { label: "Proyectos" }]} />
     <header class="page-header">
       <h1 class="page-title">Proyectos</h1>

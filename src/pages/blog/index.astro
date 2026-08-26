@@ -3,6 +3,7 @@ import HtmlGeneralLayout from "../../layouts/HtmlGeneralLayout.astro";
 import DataBlog from "../../data/blog.json";
 import { STORGE_BLOBS } from "../../config";
 import Breadcrumb from "../../components/Breadcrumb.astro";
+import PageTopStrip from "../../components/PageTopStrip.astro";
 
 const posts = [...DataBlog].sort((a, b) => b.date.localeCompare(a.date));
 ---
@@ -12,6 +13,7 @@ const posts = [...DataBlog].sort((a, b) => b.date.localeCompare(a.date));
   title="Blog | Joseph Silva Bendezu - Software Engineer, AI Engineer"
 >
   <div class="blog-page">
+    <PageTopStrip />
     <Breadcrumb items={[{ label: "JosephSB", href: "/" }, { label: "Blog" }]} />
     <h1 class="page-title">Blog</h1>
     <p class="page-lede">
