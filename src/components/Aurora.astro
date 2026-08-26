@@ -1,0 +1,236 @@
+---
+interface Props {
+    class?: string;
+    /** Brillo global del verde. 0.3 – 1.6 */
+    intensity?: number;
+    /** Tamaño del bloque en px CSS. 1 = sin pixelar, 7 = look líquido-pixel */
+    pixel?: number;
+    /** Escalones de color. Menos bandas = más cartoon */
+    levels?: number;
+    /** Multiplicador de velocidad del flujo */
+    speed?: number;
+    /** Grano de película encima de los bloques. 0 – 0.25 */
+    grain?: number;
+}
+
+const {
+    class: className = "",
+    intensity = 1.0,
+    pixel = 7,
+    levels = 9,
+    speed = 1.0,
+    grain = 0.07,
+} = Astro.props;
+---
+
+<canvas
+    class={`aurora-canvas ${className}`}
+    data-intensity={intensity}
+    data-pixel={pixel}
+    data-levels={levels}
+    data-speed={speed}
+    data-grain={grain}></canvas>
+
+<script>
+    function initAurora(canvas: HTMLCanvasElement) {
+        if (canvas.dataset.auroraInit === "1") return;
+        canvas.dataset.auroraInit = "1";
+
+        const gl = canvas.getContext("webgl", {
+            antialias: false,
+            premultipliedAlpha: false,
+        });
+        if (!gl) return;
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const num = (k: string, d: number) =>
+            parseFloat(canvas.dataset[k] ?? String(d)) || d;
+
+        const intensity = num("intensity", 1.0);
+        const pixel = num("pixel", 7);
+        const levels = num("levels", 9);
+        const speed = num("speed", 1.0);
+        const grain = num("grain", 0.07);
+
+        function resize() {
+            const parent = canvas.parentElement!;
+            const w = parent.clientWidth;
+            const h = parent.clientHeight;
+            if (w === 0 || h === 0) return;
+            canvas.width = Math.floor(w * dpr);
+            canvas.height = Math.floor(h * dpr);
+            canvas.style.width = w + "px";
+            canvas.style.height = h + "px";
+            gl!.viewport(0, 0, canvas.width, canvas.height);
+        }
+
+        const vertSrc = `
+attribute vec2 position;
+void main() { gl_Position = vec4(position, 0.0, 1.0); }`;
+
+        const fragSrc = `
+precision highp float;
+uniform float u_time;
+uniform vec2  u_resolution;
+uniform float u_intensity;
+uniform float u_pixel;
+uniform float u_levels;
+uniform float u_grain;
+
+vec2 hash(vec2 p) {
+    p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+    return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);
+}
+float noise(vec2 p) {
+    const float K1 = 0.366025404;
+    const float K2 = 0.211324865;
+    vec2 i = floor(p + (p.x + p.y) * K1);
+    vec2 a = p - i + (i.x + i.y) * K2;
+    vec2 o = (a.x > a.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+    vec2 b = a - o + K2;
+    vec2 c = a - 1.0 + 2.0 * K2;
+    vec3 h = max(0.5 - vec3(dot(a,a), dot(b,b), dot(c,c)), 0.0);
+    vec3 n = h*h*h*h * vec3(dot(a, hash(i)), dot(b, hash(i+o)), dot(c, hash(i+1.0)));
+    return dot(n, vec3(70.0));
+}
+float fbm(vec2 p) {
+    float f = 0.0, a = 0.5;
+    for (int i = 0; i < 4; i++) { f += a * noise(p); p *= 2.03; a *= 0.5; }
+    return f;
+}
+float hash1(vec2 p) { return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+
+void main() {
+    // El color se resuelve en el centro de cada celda -> bloques, no píxeles finos
+    vec2 cell = floor(gl_FragCoord.xy / u_pixel);
+    vec2 uv = ((cell + 0.5) * u_pixel) / u_resolution;
+    vec2 p = uv;
+    p.x *= u_resolution.x / u_resolution.y;
+
+    // Domain warping: el ruido deforma sus propias coordenadas
+    float t = u_time * 0.06;
+    vec2 warp = vec2(fbm(p * 0.85 + vec2(0.0, t)), fbm(p * 0.85 + vec2(4.1, -t)));
+    vec2 warped = p + warp * 1.05;
+    float n = fbm(warped * 1.15 + t * 0.30) * 0.6
+            + fbm(warped * 0.50 - t * 0.20) * 0.4;
+    n = smoothstep(0.02, 0.62, n);
+
+    // Haz nacido del borde izquierdo
+    float beam = smoothstep(1.30, 0.05, length((uv - vec2(0.06, 0.55)) * vec2(0.62, 1.55)));
+    n *= mix(0.30, 1.15, beam);
+
+    // Jitter suave + cuantización -> gradiente elegante
+    n += (hash1(cell) - 0.5) * 0.020;
+    float q = clamp(floor(n * u_levels + 0.5) / u_levels, 0.0, 1.0) * u_intensity;
+
+    // Rampa alrededor de #14F898
+    vec3 c0 = vec3(0.031, 0.031, 0.039); // #08080a — site background
+    vec3 c1 = vec3(0.040, 0.170, 0.140);
+    vec3 c2 = vec3(0.055, 0.780, 0.520);
+    vec3 c3 = vec3(0.078, 0.973, 0.596); // #14f898
+    vec3 c4 = vec3(0.600, 1.000, 0.850);
+    vec3 col = mix(c0, c1, smoothstep(0.00, 0.34, q));
+    col = mix(col, c2, smoothstep(0.30, 0.62, q));
+    col = mix(col, c3, smoothstep(0.58, 0.86, q));
+    col = mix(col, c4, smoothstep(0.88, 1.05, q));
+
+    // Desvío de hue apenas perceptible, sin ruido por bloque
+    float hsel = hash1(cell * 1.73 + 5.0);
+    col = mix(col, mix(vec3(0.043, 0.847, 0.949), vec3(0.396, 1.0, 0.518), hsel), 0.06 * q * q);
+
+    // Viñeta + grano a resolución real
+    col *= mix(0.55, 1.0, smoothstep(1.25, 0.30, length(uv - vec2(0.42, 0.5))));
+    col += (hash1(gl_FragCoord.xy + fract(u_time) * 37.0) - 0.5) * u_grain;
+
+    gl_FragColor = vec4(max(col, 0.0), 1.0);
+}`;
+
+        function compile(type: number, src: string) {
+            const s = gl!.createShader(type)!;
+            gl!.shaderSource(s, src);
+            gl!.compileShader(s);
+            if (!gl!.getShaderParameter(s, gl!.COMPILE_STATUS)) {
+                console.error(gl!.getShaderInfoLog(s));
+            }
+            return s;
+        }
+
+        const prog = gl.createProgram()!;
+        gl.attachShader(prog, compile(gl.VERTEX_SHADER, vertSrc));
+        gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fragSrc));
+        gl.linkProgram(prog);
+        gl.useProgram(prog);
+
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(
+            gl.ARRAY_BUFFER,
+            new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+            gl.STATIC_DRAW,
+        );
+        const posLoc = gl.getAttribLocation(prog, "position");
+        gl.enableVertexAttribArray(posLoc);
+        gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+        const uTime = gl.getUniformLocation(prog, "u_time");
+        const uRes = gl.getUniformLocation(prog, "u_resolution");
+        const uInt = gl.getUniformLocation(prog, "u_intensity");
+        const uPix = gl.getUniformLocation(prog, "u_pixel");
+        const uLev = gl.getUniformLocation(prog, "u_levels");
+        const uGrn = gl.getUniformLocation(prog, "u_grain");
+
+        resize();
+        window.addEventListener("resize", resize);
+
+        let running = true;
+        const io = new IntersectionObserver((entries) => {
+            for (const e of entries) running = e.isIntersecting;
+        });
+        io.observe(canvas);
+
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let clock = 0;
+        let last = performance.now();
+
+        function render(now: number) {
+            const dt = Math.min((now - last) / 1000, 0.05);
+            last = now;
+            if (!reduced.matches) clock += dt * speed;
+
+            if (running) {
+                gl!.uniform1f(uTime, clock);
+                gl!.uniform2f(uRes, canvas.width, canvas.height);
+                gl!.uniform1f(uInt, intensity);
+                gl!.uniform1f(uPix, Math.max(1, pixel * dpr));
+                gl!.uniform1f(uLev, levels);
+                gl!.uniform1f(uGrn, grain);
+                gl!.drawArrays(gl!.TRIANGLE_STRIP, 0, 4);
+            }
+            requestAnimationFrame(render);
+        }
+        requestAnimationFrame(render);
+    }
+
+    function initAll() {
+        document
+            .querySelectorAll<HTMLCanvasElement>(".aurora-canvas")
+            .forEach(initAurora);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAll);
+    } else {
+        initAll();
+    }
+</script>
+
+<style>
+    .aurora-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        z-index: 0;
+    }
+</style>

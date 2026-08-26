@@ -1,0 +1,382 @@
+---
+interface Props {
+    class?: string;
+    /** Mensajes que se condensan; separa varios con "|". Vacío = puro caos. */
+    messages?: string;
+    /** px CSS por célula (3 – 14) */
+    cell?: number;
+    /** generaciones por segundo */
+    rate?: number;
+    /** densidad de siembra 0 – 1 */
+    density?: number;
+    /** tasa de apagado de la estela */
+    trail?: number;
+    /** Opacidad del canvas 0 – 1 */
+    opacity?: number;
+    /** Solo se activa donde pasa el cursor; sin siembra automática. */
+    cursorOnly?: boolean;
+    /** Escuchar el cursor en toda la ventana (útil con pointer-events:none). */
+    windowPointer?: boolean;
+    /** Vida promedio en generaciones antes de morir; 0 = eternas. */
+    lifetime?: number;
+    /** Sembrar células con el cursor. */
+    interactive?: boolean;
+}
+
+const {
+    class: className = "",
+    messages = "",
+    cell = 6,
+    rate = 10,
+    density = 0.22,
+    trail = 0.1,
+    opacity = 1,
+    cursorOnly = false,
+    windowPointer = false,
+    lifetime = 0,
+    interactive = true,
+} = Astro.props;
+---
+
+<div
+    class={`gol-host ${className}`}
+    data-messages={messages}
+    data-cell={cell}
+    data-rate={rate}
+    data-density={density}
+    data-trail={trail}
+    data-cursor-only={cursorOnly ? "1" : "0"}
+    data-window-pointer={windowPointer ? "1" : "0"}
+    data-lifetime={lifetime}
+    data-interactive={interactive ? "1" : "0"}
+    style={`--gol-opacity:${opacity}; ${windowPointer ? "pointer-events:none;" : ""}`}>
+</div>
+
+<script>
+    function initGol(host: HTMLElement) {
+        if (host.dataset.golInit === "1") return;
+        host.dataset.golInit = "1";
+
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d")!;
+        host.appendChild(canvas);
+
+        const cellCv = document.createElement("canvas");
+        const cellCtx = cellCv.getContext("2d")!;
+
+        const num = (k: string, d: number) =>
+            parseFloat(host.dataset[k] ?? String(d)) || d;
+
+        const params = {
+            cell: num("cell", 6),
+            rate: num("rate", 10),
+            dens: num("density", 0.22),
+            trail: num("trail", 0.1),
+            messages: (host.dataset.messages || "")
+                .split("|")
+                .map((s) => s.trim())
+                .filter((s) => s.length > 0),
+        };
+        const hasMessages = params.messages.length > 0;
+        const cursorOnly = host.dataset.cursorOnly === "1";
+        const windowPointer = host.dataset.windowPointer === "1";
+        const lifetime = parseFloat(host.dataset.lifetime ?? "0") || 0;
+        const deathProb = lifetime > 0 ? 1 / lifetime : 0;
+        const interactive = host.dataset.interactive !== "0";
+
+        let W = 0, H = 0, DPR = 1;
+        let cols = 0, rows = 0;
+        let alive: Uint8Array,
+            next: Uint8Array,
+            glow: Float32Array,
+            target: Uint8Array,
+            order: Float32Array;
+        let msgIndex = 0;
+
+        const PHASES = { chaos: 7000, form: 2100, hold: 4200, melt: 1700 };
+        let phase: keyof typeof PHASES = "chaos";
+        let phaseT = 0;
+
+        function build() {
+            DPR = Math.min(window.devicePixelRatio || 1, 2);
+            W = host.clientWidth;
+            H = host.clientHeight;
+            if (!W || !H) return;
+
+            canvas.width = Math.round(W * DPR);
+            canvas.height = Math.round(H * DPR);
+            canvas.style.width = W + "px";
+            canvas.style.height = H + "px";
+            ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+            ctx.imageSmoothingEnabled = false;
+
+            cols = Math.max(12, Math.floor(W / params.cell));
+            rows = Math.max(8, Math.floor(H / params.cell));
+
+            cellCv.width = cols;
+            cellCv.height = rows;
+
+            const n = cols * rows;
+            alive = new Uint8Array(n);
+            next = new Uint8Array(n);
+            glow = new Float32Array(n);
+            target = new Uint8Array(n);
+            order = new Float32Array(n);
+            for (let i = 0; i < n; i++) order[i] = Math.random();
+
+            if (!cursorOnly) seed();
+            if (hasMessages) rasterize(params.messages[msgIndex]);
+        }
+
+        function seed() {
+            for (let i = 0; i < alive.length; i++) {
+                alive[i] = Math.random() < params.dens ? 1 : 0;
+            }
+        }
+
+        function rasterize(text: string) {
+            target.fill(0);
+            if (!text) return;
+
+            const g = cellCtx;
+            g.setTransform(1, 0, 0, 1, 0, 0);
+            g.clearRect(0, 0, cols, rows);
+            g.fillStyle = "#fff";
+            g.textAlign = "center";
+            g.textBaseline = "middle";
+
+            const maxW = cols * 0.86;
+            const maxH = rows * 0.62;
+            let size = Math.floor(maxH);
+            g.font = "900 " + size + 'px Helvetica, Arial, sans-serif';
+            const w = g.measureText(text).width;
+            if (w > maxW) {
+                size = Math.max(5, Math.floor(size * (maxW / w)));
+                g.font = "900 " + size + 'px Helvetica, Arial, sans-serif';
+            }
+
+            g.fillText(text, cols / 2, rows / 2);
+
+            const img = g.getImageData(0, 0, cols, rows).data;
+            for (let i = 0, p = 3; i < target.length; i++, p += 4) {
+                target[i] = img[p] > 105 ? 1 : 0;
+            }
+            g.clearRect(0, 0, cols, rows);
+        }
+
+        function life() {
+            for (let y = 0; y < rows; y++) {
+                const up = ((y - 1 + rows) % rows) * cols;
+                const mid = y * cols;
+                const dn = ((y + 1) % rows) * cols;
+                for (let x = 0; x < cols; x++) {
+                    const xl = (x - 1 + cols) % cols;
+                    const xr = (x + 1) % cols;
+                    const n =
+                        alive[up + xl] + alive[up + x] + alive[up + xr] +
+                        alive[mid + xl] + alive[mid + xr] +
+                        alive[dn + xl] + alive[dn + x] + alive[dn + xr];
+                    const a = alive[mid + x];
+                    next[mid + x] = (a ? n === 2 || n === 3 : n === 3) ? 1 : 0;
+                }
+            }
+            const t = alive; alive = next; next = t;
+        }
+
+        function step() {
+            if (!hasMessages || phase === "chaos") {
+                life();
+                if (!cursorOnly) {
+                    const shots = Math.max(2, (alive.length * 0.0012) | 0);
+                    for (let i = 0; i < shots; i++) {
+                        alive[(Math.random() * alive.length) | 0] = 1;
+                    }
+                }
+                if (deathProb > 0) {
+                    for (let i = 0; i < alive.length; i++) {
+                        if (alive[i] && Math.random() < deathProb) alive[i] = 0;
+                    }
+                }
+            } else if (phase === "form") {
+                const q = phaseT / PHASES.form;
+                life();
+                for (let j = 0; j < alive.length; j++) {
+                    if (order[j] < q) alive[j] = target[j];
+                }
+            } else if (phase === "hold") {
+                life();
+                for (let k = 0; k < alive.length; k++) {
+                    if (target[k]) alive[k] = 1;
+                }
+            } else {
+                const m = 1 - phaseT / PHASES.melt;
+                life();
+                for (let l = 0; l < alive.length; l++) {
+                    if (target[l] && order[l] < m) alive[l] = 1;
+                }
+            }
+        }
+
+        let img: ImageData | null = null;
+        function render(dt: number) {
+            if (!cols) return;
+            if (!img || img.width !== cols || img.height !== rows) {
+                img = cellCtx.createImageData(cols, rows);
+            }
+            const d = img.data;
+
+            const riseK = 1 - Math.pow(0.001, dt * 6);
+            const fallK = 1 - Math.pow(0.001, dt * params.trail * 12);
+            const showMsg = hasMessages && (phase === "hold" || phase === "form");
+            const pulse = 0.86 + 0.14 * Math.sin(performance.now() * 0.0022);
+
+            for (let i = 0, o = 0; i < glow.length; i++, o += 4) {
+                const a = alive[i];
+                glow[i] += (a - glow[i]) * (a ? riseK : fallK);
+                const g = glow[i];
+
+                if (g < 0.006) { d[o + 3] = 0; continue; }
+
+                const isMsg = showMsg && target[i];
+                const hot = Math.max(0, g - 0.72) / 0.28;
+                const boost = isMsg ? pulse : 0.72;
+
+                d[o] = (20 + 215 * hot) * boost;
+                d[o + 1] = 248 * (0.80 + 0.20 * hot) * boost;
+                d[o + 2] = (152 + 90 * hot) * boost;
+                d[o + 3] = Math.min(255, g * (isMsg ? 255 : 205));
+            }
+
+            cellCtx.putImageData(img, 0, 0);
+
+            ctx.clearRect(0, 0, W, H);
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(
+                cellCv, 0, 0, cols, rows,
+                0, 0, cols * params.cell, rows * params.cell,
+            );
+
+            if (params.cell >= 5) {
+                ctx.save();
+                ctx.globalCompositeOperation = "destination-out";
+                ctx.fillStyle = "#000";
+                for (let x = 1; x < cols; x++)
+                    ctx.fillRect(x * params.cell - 1, 0, 1, H);
+                for (let y = 1; y < rows; y++)
+                    ctx.fillRect(0, y * params.cell - 1, W, 1);
+                ctx.restore();
+            }
+        }
+
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let last = performance.now();
+        let acc = 0;
+        let visible = true;
+
+        new IntersectionObserver(
+            (entries) => {
+                for (const e of entries) visible = e.isIntersecting;
+                last = performance.now();
+            },
+            { rootMargin: "250px" },
+        ).observe(host);
+
+        function advancePhase() {
+            if (!hasMessages) return;
+            if (phase === "chaos") phase = "form";
+            else if (phase === "form") phase = "hold";
+            else if (phase === "hold") phase = "melt";
+            else {
+                phase = "chaos";
+                msgIndex = (msgIndex + 1) % params.messages.length;
+                rasterize(params.messages[msgIndex]);
+                for (let i = 0; i < order.length; i++) order[i] = Math.random();
+            }
+            phaseT = 0;
+        }
+
+        function loop(now: number) {
+            requestAnimationFrame(loop);
+            const dt = Math.min((now - last) / 1000, 0.05);
+            last = now;
+            if (!visible || !cols) return;
+
+            if (hasMessages) {
+                phaseT += dt * 1000;
+                if (phaseT >= PHASES[phase]) advancePhase();
+            }
+
+            const interval = 1 / params.rate;
+            acc += dt;
+            let guard = 0;
+            while (acc >= interval && guard++ < 4) {
+                if (!reduced.matches || phase !== "chaos") step();
+                acc -= interval;
+            }
+
+            render(dt);
+        }
+
+        const pointerTarget: EventTarget = windowPointer ? window : host;
+        if (interactive) pointerTarget.addEventListener("pointermove", ((e: PointerEvent) => {
+            if (!cols) return;
+            const r = host.getBoundingClientRect();
+            const px = e.clientX - r.left;
+            const py = e.clientY - r.top;
+            if (px < 0 || py < 0 || px > r.width || py > r.height) return;
+            const cx = Math.floor(px / params.cell);
+            const cy = Math.floor(py / params.cell);
+            for (let dy = -2; dy <= 2; dy++) {
+                for (let dx = -2; dx <= 2; dx++) {
+                    if (Math.random() < 0.45) continue;
+                    const x = (cx + dx + cols) % cols;
+                    const y = (cy + dy + rows) % rows;
+                    alive[y * cols + x] = 1;
+                }
+            }
+        }) as EventListener);
+
+        let rt: number;
+        window.addEventListener("resize", () => {
+            clearTimeout(rt);
+            rt = window.setTimeout(build, 150);
+        });
+
+        build();
+        requestAnimationFrame(loop);
+    }
+
+    function initAll() {
+        document
+            .querySelectorAll<HTMLElement>(".gol-host")
+            .forEach(initGol);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAll);
+    } else {
+        initAll();
+    }
+</script>
+
+<style>
+    .gol-host {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+    .gol-host[data-interactive="1"] {
+        pointer-events: auto;
+    }
+    .gol-host canvas {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        opacity: var(--gol-opacity, 1);
+    }
+</style>

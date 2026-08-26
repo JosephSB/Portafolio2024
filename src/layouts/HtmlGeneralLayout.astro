@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import GameOfLife from "../components/GameOfLife.astro";
 import SocialLinks from "../components/SocialLinks.astro";
 import "../styles/normalize.css";
 import { STORGE_BLOBS } from "../config";
@@ -86,6 +87,9 @@ const { title, description } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <div class="footer-gol">
+      <GameOfLife messages="josephsb" cell={6} rate={12} density={0.22} trail={0.12} />
+    </div>
   </body>
 </html>
 <style is:global>
@@ -93,13 +97,13 @@ const { title, description } = Astro.props;
     --primary-font: "M PLUS 1", sans-serif;
     --secondary-font: "Press Start 2P", cursive;
     --primary-color: #14f898;
-    --bd-color: #202023;
-    --bd-color-transparent: #2020238f;
-    --bd-color-2: #2b2b2f;
+    --bd-color: #08080a;
+    --bd-color-transparent: #08080a8f;
+    --bd-color-2: #16161a;
     --text-color: #ffffff;
     --text-color-2: #a3a3a3;
     --filter-icon: invert(1);
-    --max-width: 800px;
+    --max-width: 900px;
     --size-header: 60px;
   }
   [data-theme="light"] {
@@ -114,9 +118,9 @@ const { title, description } = Astro.props;
 
   [data-theme="dark"] {
     --primary-color: #14f898;
-    --bd-color: #202023;
-    --bd-color-transparent: #2020238f;
-    --bd-color-2: #2b2b2f;
+    --bd-color: #08080a;
+    --bd-color-transparent: #08080a8f;
+    --bd-color-2: #16161a;
     --text-color: #ffffff;
     --text-color-2: #a3a3a3;
     --filter-icon: invert(1);
@@ -131,6 +135,7 @@ const { title, description } = Astro.props;
     font-family: var(--primary-font);
     scrollbar-gutter: 5px;
     background-color: var(--bd-color);
+    overflow-x: hidden;
   }
   .app {
     display: flex;
@@ -145,6 +150,17 @@ const { title, description } = Astro.props;
   }
   a {
     text-decoration: none;
+  }
+  .footer-gol {
+    position: relative;
+    width: 100vw;
+    height: 190px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 26%, #000 88%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 26%, #000 88%, transparent 100%);
+  }
+  @media screen and (max-width: 600px) {
+    .footer-gol { height: 150px; }
   }
   /*------------SCROLL----------------*/
   ::-webkit-scrollbar {

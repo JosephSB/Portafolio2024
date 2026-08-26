@@ -8,6 +8,8 @@ import DataSkills from "../data/skills.json";
 import CardProject from "../components/CardProject.astro";
 import CardSideProject from "../components/CardSideProject.astro";
 import { Icon } from "astro-icon/components";
+import Aurora from "../components/Aurora.astro";
+import GameOfLife from "../components/GameOfLife.astro";
 import "../styles/GridGallery.css";
 import { STORGE_BLOBS } from "../config";
 
@@ -19,15 +21,59 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
   title="Joseph Nahun Silva Bendezu - Software Engineer, FullStack Developer"
 >
   <div class="home-banner">
-    <div>
-      <h1 class="banner-title">&gt;&lowbar; Joseph Nahun Silva Bendezu</h1>
-      <p class="banner-subtitle">Software Engineer | AI Engineer | FullStack Developer</p>
+    <GameOfLife cell={6} rate={20} density={0.06} trail={0.08} opacity={0.35} interactive={false} />
+    <div class="banner-inner">
+      <div class="banner-content">
+        <h1 class="banner-title">&gt;&lowbar; Joseph Nahun Silva Bendezu</h1>
+        <p class="banner-subtitle">Software Engineer | AI Engineer | FullStack Developer</p>
+        <div class="banner-links">
+          <a
+            class="banner-link"
+            href={`${STORGE_BLOBS}cv-joseph-silva.pdf`}
+            target="_blank"
+            rel="noopener"
+            aria-label="Curriculum"
+            title="Curriculum"
+          >
+            <Icon name="mdi:file-document-outline" />
+          </a>
+          <a
+            class="banner-link"
+            href="https://github.com/JosephSB"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+          >
+            <Icon name="simple-icons:github" />
+          </a>
+          <a
+            class="banner-link"
+            href="https://www.linkedin.com/in/joseph-silva-bendezu/"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+          >
+            <Icon name="simple-icons:linkedin" />
+          </a>
+          <a
+            class="banner-link"
+            href="https://www.tiktok.com/@_josephsb"
+            target="_blank"
+            rel="noopener"
+            aria-label="TikTok"
+          >
+            <Icon name="simple-icons:tiktok" />
+          </a>
+        </div>
+      </div>
+      <div class="banner-img-wrapper">
+        <img
+          class="banner-img"
+          src="/images/FotoJoseph.webp"
+          alt="Joseph Nahun Silva Bendezu"
+        />
+      </div>
     </div>
-    <img
-      class="banner-img"
-      src="/images/FotoJoseph.webp"
-      alt="Joseph Nahun Silva Bendezu"
-    />
   </div>
   <div class="home-about">
     <p class="home-subtitle">Sobre Mi</p>
@@ -156,12 +202,41 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
 
 <style>
   .home-banner {
+    position: relative;
+    /* Break out of the .app container to span full viewport width */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    /* Pull up under the fixed header so the aurora sits behind it */
+    margin-top: calc(-1 * (var(--size-header) + 10px) - 1rem);
+    margin-bottom: 3rem;
+    min-height: 100vh;
+    padding: calc(var(--size-header) + 40px) 1rem 3rem;
+    overflow: hidden;
+    background-color: var(--bd-color);
+    isolation: isolate;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .banner-inner {
     width: 100%;
-    height: 400px;
+    max-width: var(--max-width);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px;
+    background-color: rgba(8, 8, 10, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .banner-content {
+    flex: 1 1 auto;
+    min-width: 0;
   }
   .banner-title {
     margin: 5px 0;
@@ -173,8 +248,53 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
     margin: 5px 0;
     color: var(--text-color);
   }
+  .banner-links {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .banner-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    border-radius: 999px;
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    font-size: 16px;
+  }
+  .banner-link:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+  }
+  .banner-img-wrapper {
+    flex-shrink: 0;
+    width: 260px;
+    height: 260px;
+    overflow: hidden;
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    animation: blob-morph 14s ease-in-out infinite alternate;
+  }
   .banner-img {
-    width: 250px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: var(--bd-color);
+  }
+  @keyframes blob-morph {
+    0%   { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+    50%  { border-radius: 48% 52% 41% 59% / 62% 44% 56% 38%; }
+    100% { border-radius: 58% 42% 60% 40% / 45% 55% 45% 55%; }
   }
   .home-about,
   .home-exp,
@@ -280,16 +400,17 @@ const DataProjectsFilter = DataProjects.filter((x) => x.isTop);
       grid-template-rows: 1fr 1fr;
     }
     .home-banner {
-      /*width: 100%;
-      height: 400px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 3rem;*/
-      height: auto;
-      flex-direction: column;
-      flex-flow: column-reverse;
-      margin: 2rem 0;
+      min-height: auto;
+      padding: calc(var(--size-header) + 30px) 1.5rem 2.5rem;
+    }
+    .banner-inner {
+      flex-direction: column-reverse;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .banner-img-wrapper {
+      width: 200px;
+      height: 200px;
     }
     .container-skills,
     .container-contact {
