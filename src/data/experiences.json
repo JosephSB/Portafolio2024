@@ -1,7 +1,7 @@
 [
     {
         "id": "exp-001",
-        "title": "CEO",
+        "title": "Founder",
         "date": "Ene 2025 - Actualidad",
         "body": "En CVMATCHER lidero la estrategia tecnológica y el desarrollo de una plataforma de empleabilidad que conecta a más de 50,000 estudiantes. Diseñé la arquitectura con NestJS, PostgreSQL, Angular y ReactJS, e implementé agentes de IA con búsqueda vectorial y prompt engineering para recomendar ofertas laborales con un 60% de mejor coincidencia. Desarrollé un bot de WhatsApp para búsqueda de prácticas, revisión de CVs y simulación de entrevistas, además de la infraestructura en Google Cloud (VM, Cloud Run, Cloud Build, Generative AI), Supabase y Render. Gestioné un equipo de 5 personas bajo metodologías ágiles.",
         "skills": ["NestJS", "PostgreSQL", "Angular", "ReactJS", "GCloud", "IA", "TypeScript", "Docker"]

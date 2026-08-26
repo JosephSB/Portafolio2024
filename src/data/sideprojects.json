@@ -3,11 +3,11 @@
         "id": "sidep-001",
         "isTop": true,
         "portadas" : [
-            "p2/portada1.webp"
+            "pd1/cvmatcher.webp"
         ],
         "name":"CVMATCHER",
         "tags" : ["StartUp", "Frontend","Backend"],
-        "description" : "CVMATCHER 🚀 es una plataforma de empleabilidad impulsada por IA que ya conecta a más de 100,000 estudiantes con oportunidades laborales. Con agentes inteligentes, búsqueda vectorial y prompt engineering, analiza tu CV frente a las ofertas y entrega recomendaciones personalizadas. Incluye un bot de WhatsApp para buscar prácticas, revisar CVs y simular entrevistas. 💼🤖 #Empleo #IA",
+        "description" : "CVMATCHER es una plataforma de empleabilidad impulsada por IA que ya conecta a más de 100,000 estudiantes con oportunidades laborales y trabaja con +10 universidades de Perú y LATAM. Con herramientas IA y recomendación de ofertas laborales mediante búsqueda vectorial y prompt engineering. Desplegado en AWS y GCP, soporta 20,000 usuarios activos al mes y aplica multitenant para white label.",
         "Repositorio": "",
         "Demo": "https://www.cvmatcher.app/", 
         "technologies":[
@@ -15,7 +15,7 @@
                 "name": "NestJS",
                 "icon": "svg/nestjs.svg"
             },
-                        {
+            {
                 "name": "Gemini Enterprise",
                 "icon": "svg/gemini.svg"
             },
@@ -32,6 +32,70 @@
                 "icon": "svg/gcloud.svg"
             },
             {
+                "name": "AWS",
+                "icon": "svg/aws.svg"
+            }
+        ]
+    },
+    {
+        "id": "sidep-003",
+        "isTop": true,
+        "portadas" : [
+            "pd2/influplace.webp"
+        ],
+        "name":"Influplace",
+        "tags" : ["StartUp", "Frontend","Backend"],
+        "description" : "Influplace es una plataforma de influencer marketing donde creadores de contenido conectan con campañas de marcas. Las marcas publican campañas con objetivos, presupuesto y requisitos; los creadores postulan según su nicho y métricas, y la plataforma gestiona todo el flujo: matching, negociación, entrega de contenido y seguimiento de resultados. Integra OAuth con redes sociales para validar audiencia y métricas reales. 📈🤝 #InfluencerMarketing #CreatorEconomy",
+        "Repositorio": "",
+        "Demo": "https://www.influplace.com/", 
+        "technologies":[
+            {
+                "name": "NestJS",
+                "icon": "svg/nestjs.svg"
+            },
+            {
+                "name": "ReactJS",
+                "icon": "svg/reactjs.svg"
+            },
+            {
+                "name": "PostgreSQL",
+                "icon": "svg/postgresql.svg"
+            },
+            {
+                "name": "AWS",
+                "icon": "svg/aws.svg"
+            },
+            {
+                "name": "Docker",
+                "icon": "svg/docker.svg"
+            }
+        ]
+    },
+    {
+        "id": "sidep-004",
+        "isTop": true,
+        "portadas" : [
+            "pd3/miabot.gif"
+        ],
+        "name":"Mia — Agente de WhatsApp",
+        "tags" : ["WhatsApp", "Agente IA", "Backend"],
+        "description" : "Mia es un agente de WhatsApp para buscar prácticas, revisar CVs y simular entrevistas. Aprende de tus conversaciones y recuerda tu perfil, tu búsqueda y tu historial para dar respuestas cada vez más personalizadas. Implementado con IA generativa, RAG y memorización de información a largo plazo.",
+        "Repositorio": "",
+        "Demo": "https://wasap.market/bot/cvmatcher-mia", 
+        "technologies":[
+            {
+                "name": "NestJS",
+                "icon": "svg/nestjs.svg"
+            },
+            {
+                "name": "Gemini Enterprise",
+                "icon": "svg/gemini.svg"
+            },
+            {
+                "name": "GCloud",
+                "icon": "svg/gcloud.svg"
+            },
+            {
                 "name": "Docker",
                 "icon": "svg/docker.svg"
             }
@@ -41,8 +105,7 @@
         "id": "sidep-002",
         "isTop": true,
         "portadas" : [
-            "p1/portada1.webp",
-            "p1/preview.gif"
+            "pd4/twitterpoll.webp"
         ],
         "name":"React Twitter Poll",
         "tags" : ["Frontend","NPM"],
